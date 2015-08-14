@@ -51,9 +51,11 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
 
+	auto overlay = Sprite::create("map.png");
+	overlay->setAnchorPoint(Vec2(0, 0));
+	this->addChild(overlay);
 
-
-    return true;
+	return true;
 }
 
 
