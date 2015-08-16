@@ -12,6 +12,9 @@ public:
 	bool init(b2Vec2 const& playerOrigin, cocos2d::Vec2 const& playerSize);
 	~WorldPhysics();
 
+	void Step(float dt);
+	b2Vec2 GetPlayerPosition() const;
+
 private:
 	b2World *_world;
 	b2Body *_playerBody;

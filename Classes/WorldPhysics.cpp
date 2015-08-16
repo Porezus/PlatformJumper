@@ -51,3 +51,13 @@ WorldPhysics::~WorldPhysics()
 {
 	delete _world;
 }
+
+void WorldPhysics::Step(float dt)
+{
+	_world->Step(dt, 10, 10);
+}
+
+b2Vec2 WorldPhysics::GetPlayerPosition() const
+{
+	return _playerBody->GetPosition();
+}
