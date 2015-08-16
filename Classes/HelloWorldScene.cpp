@@ -57,17 +57,19 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
 
+	_world = WorldPhysics::create(b2Vec2(150.0 / _ptmRatio, 200.0 / _ptmRatio), Vec2(15.0 / _ptmRatio, 25.0 / _ptmRatio));
+	addChild(_world);
+
+	b2PolygonShape block;
+	block.SetAsBox(0.5, 0.5 * (90 - 55) / _ptmRatio);
+	_world->AddWallPolygon(b2Vec2(0.75, 1.0 * (640 - 575) / _ptmRatio), block);
+
 	auto overlay = Sprite::create("map.png");
 	overlay->setAnchorPoint(Vec2(0, 0));
 	this->addChild(overlay);
 
-	_world = WorldPhysics::create(b2Vec2(80.0 / _ptmRatio, 90.0 / _ptmRatio), Vec2(15.0 / _ptmRatio, 25.0 / _ptmRatio));
-	addChild(_world);
-
 	_playerSprite = Sprite::create("player.png");
-
 	UpdatePositions();
-
 	addChild(_playerSprite);
 
 	return true;

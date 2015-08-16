@@ -32,7 +32,7 @@ bool WorldPhysics::init(b2Vec2 const& playerOrigin, Vec2 const& playerSize)
 	playerBodyDef.position = playerOrigin;
 
 	b2PolygonShape playerPolygon;
-	playerPolygon.SetAsBox(playerSize.x, playerSize.y);
+	playerPolygon.SetAsBox(0.5 * playerSize.x, 0.5 * playerSize.y);
 
 	b2FixtureDef playerFixtureDef;
 	playerFixtureDef.shape = &playerPolygon;
