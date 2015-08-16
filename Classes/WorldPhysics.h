@@ -6,10 +6,10 @@
 class WorldPhysics : public cocos2d::Node
 {
 public:
-	static WorldPhysics* create(b2Vec2 const& playerOrigin, cocos2d::Vec2 const& playerSize, float ppm);
+	static WorldPhysics* create(cocos2d::Vec2 const& playerOrigin, cocos2d::Size const& playerSize, float ppm);
 
 	WorldPhysics(float ppm);
-	bool init(b2Vec2 const& playerOrigin, cocos2d::Vec2 const& playerSize);
+	bool init(cocos2d::Vec2 const& playerOrigin, cocos2d::Size const& playerSize);
 	~WorldPhysics();
 
 	void Step(float dt);

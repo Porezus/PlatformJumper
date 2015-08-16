@@ -57,7 +57,7 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
 
-	_world = WorldPhysics::create(b2Vec2(150.0 / _ptmRatio, 200.0 / _ptmRatio), Vec2(15.0 / _ptmRatio, 25.0 / _ptmRatio), 200);
+	_world = WorldPhysics::create(Vec2(150, 200), Size(15, 25), 200);
 	addChild(_world);
 	_world->AddWallRect(Rect(62, 640 - 588, 100, 35));
 

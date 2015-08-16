@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 
-WorldPhysics* WorldPhysics::create(b2Vec2 const& playerOrigin, Vec2 const& playerSize, float ppm)
+WorldPhysics* WorldPhysics::create(Vec2 const& playerOrigin, Size const& playerSize, float ppm)
 {
 	WorldPhysics *ret = new (std::nothrow) WorldPhysics(ppm);
 	if (ret && ret->init(playerOrigin, playerSize))
@@ -23,17 +23,17 @@ WorldPhysics::WorldPhysics(float ppm)
 	,_ppm(ppm)
 {}
 
-bool WorldPhysics::init(b2Vec2 const& playerOrigin, Vec2 const& playerSize)
+bool WorldPhysics::init(Vec2 const& playerOrigin, Size const& playerSize)
 {
 	_world = new (std::nothrow) b2World(b2Vec2(0.0f, -9.8f));
 	if (!_world) return false;
 
 	b2BodyDef playerBodyDef;
 	playerBodyDef.type = b2_dynamicBody;
-	playerBodyDef.position = playerOrigin;
+	playerBodyDef.position.Set(playerOrigin.x / _ppm, playerOrigin.y / _ppm);
 
 	b2PolygonShape playerPolygon;
-	playerPolygon.SetAsBox(0.5 * playerSize.x, 0.5 * playerSize.y);
+	playerPolygon.SetAsBox(playerSize.width / 2 / _ppm, playerSize.height / 2 / _ppm);
 
 	b2FixtureDef playerFixtureDef;
 	playerFixtureDef.shape = &playerPolygon;
