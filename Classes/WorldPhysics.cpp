@@ -63,14 +63,17 @@ b2Vec2 WorldPhysics::GetPlayerPosition() const
 	return _playerBody->GetPosition();
 }
 
-bool WorldPhysics::AddWallPolygon(b2Vec2 const& origin, b2PolygonShape const& shape)
+bool WorldPhysics::AddWallRect(Rect const& rect)
 {
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
-	bodyDef.position = origin;
+	bodyDef.position.Set(rect.getMidX() / _ppm, rect.getMidY() / _ppm);
+
+	b2PolygonShape rectShape;
+	rectShape.SetAsBox(rect.size.width / 2 / _ppm, rect.size.height / 2 / _ppm);
 
 	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &shape;
+	fixtureDef.shape = &rectShape;
 	fixtureDef.density = 1.0f;
 	fixtureDef.friction = 0.2f;
 	fixtureDef.restitution = 0.0f;

@@ -14,8 +14,7 @@ public:
 
 	void Step(float dt);
 	b2Vec2 GetPlayerPosition() const;
-
-	bool AddWallPolygon(b2Vec2 const& origin, b2PolygonShape const& shape);
+	bool AddWallRect(cocos2d::Rect const& rect);
 
 private:
 	b2World *_world;

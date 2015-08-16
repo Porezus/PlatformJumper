@@ -59,10 +59,7 @@ bool HelloWorld::init()
 
 	_world = WorldPhysics::create(b2Vec2(150.0 / _ptmRatio, 200.0 / _ptmRatio), Vec2(15.0 / _ptmRatio, 25.0 / _ptmRatio), 200);
 	addChild(_world);
-
-	b2PolygonShape block;
-	block.SetAsBox(0.5, 0.5 * (90 - 55) / _ptmRatio);
-	_world->AddWallPolygon(b2Vec2(0.75, 1.0 * (640 - 575) / _ptmRatio), block);
+	_world->AddWallRect(Rect(62, 640 - 588, 100, 35));
 
 	auto overlay = Sprite::create("map.png");
 	overlay->setAnchorPoint(Vec2(0, 0));
