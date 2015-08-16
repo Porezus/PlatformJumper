@@ -13,7 +13,7 @@ public:
 	~WorldPhysics();
 
 	void Step(float dt);
-	b2Vec2 GetPlayerPosition() const;
+	cocos2d::Vec2 GetPlayerPosition() const;
 	bool AddWallRect(cocos2d::Rect const& rect);
 
 private:

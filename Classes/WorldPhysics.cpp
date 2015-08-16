@@ -58,9 +58,9 @@ void WorldPhysics::Step(float dt)
 	_world->Step(dt, 10, 10);
 }
 
-b2Vec2 WorldPhysics::GetPlayerPosition() const
+Vec2 WorldPhysics::GetPlayerPosition() const
 {
-	return _playerBody->GetPosition();
+	return Vec2(_playerBody->GetPosition().x * _ppm, _playerBody->GetPosition().y * _ppm);
 }
 
 bool WorldPhysics::AddWallRect(Rect const& rect)

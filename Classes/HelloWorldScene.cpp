@@ -20,7 +20,6 @@ Scene* HelloWorld::createScene()
 HelloWorld::HelloWorld()
 	:_world(nullptr)
 	,_playerSprite(nullptr)
-	,_ptmRatio(200)
 {}
 
 // on "init" you need to initialize your instance
@@ -84,7 +83,7 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::UpdatePositions()
 {
-	_playerSprite->setPosition(_world->GetPlayerPosition().x * _ptmRatio, _world->GetPlayerPosition().y * _ptmRatio);
+	_playerSprite->setPosition(_world->GetPlayerPosition());
 }
 
 void HelloWorld::update(float dt)

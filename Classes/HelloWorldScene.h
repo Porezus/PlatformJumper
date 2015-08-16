@@ -26,7 +26,6 @@ public:
 	void onExit() override;
 
 private:
-	float _ptmRatio;
 	WorldPhysics *_world;
 	cocos2d::Sprite *_playerSprite;
 };
