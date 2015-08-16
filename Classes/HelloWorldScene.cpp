@@ -19,6 +19,8 @@ Scene* HelloWorld::createScene()
 
 HelloWorld::HelloWorld()
 	:_world(nullptr)
+	,_playerSprite(nullptr)
+	,_ptmRatio(200)
 {}
 
 // on "init" you need to initialize your instance
@@ -59,8 +61,14 @@ bool HelloWorld::init()
 	overlay->setAnchorPoint(Vec2(0, 0));
 	this->addChild(overlay);
 
-	_world = WorldPhysics::create(b2Vec2(1, 1), Vec2(1, 1));
+	_world = WorldPhysics::create(b2Vec2(80.0 / _ptmRatio, 90.0 / _ptmRatio), Vec2(15.0 / _ptmRatio, 25.0 / _ptmRatio));
 	addChild(_world);
+
+	_playerSprite = Sprite::create("player.png");
+
+	UpdatePositions();
+
+	addChild(_playerSprite);
 
 	return true;
 }
@@ -73,4 +81,9 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void HelloWorld::UpdatePositions()
+{
+	_playerSprite->setPosition(_world->GetPlayerPosition().x * _ptmRatio, _world->GetPlayerPosition().y * _ptmRatio);
 }

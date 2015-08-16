@@ -20,8 +20,12 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
+	void UpdatePositions();
+
 private:
+	float _ptmRatio;
 	WorldPhysics *_world;
+	cocos2d::Sprite *_playerSprite;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
