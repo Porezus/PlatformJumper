@@ -38,7 +38,7 @@ bool WorldPhysics::init(b2Vec2 const& playerOrigin, Vec2 const& playerSize)
 	playerFixtureDef.shape = &playerPolygon;
 	playerFixtureDef.density = 1.0f;
 	playerFixtureDef.friction = 0.2f;
-	playerFixtureDef.restitution = 0.8f;
+	playerFixtureDef.restitution = 0.0f;
 
 	_playerBody = _world->CreateBody(&playerBodyDef);
 	if (!_playerBody) return false;
@@ -72,7 +72,7 @@ bool WorldPhysics::AddWallPolygon(b2Vec2 const& origin, b2PolygonShape const& sh
 	fixtureDef.shape = &shape;
 	fixtureDef.density = 1.0f;
 	fixtureDef.friction = 0.2f;
-	fixtureDef.restitution = 0.8f;
+	fixtureDef.restitution = 0.0f;
 
 	auto body = _world->CreateBody(&bodyDef);
 	if (!body) return false;
