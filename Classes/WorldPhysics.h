@@ -6,9 +6,9 @@
 class WorldPhysics : public cocos2d::Node
 {
 public:
-	static WorldPhysics* create(b2Vec2 const& playerOrigin, cocos2d::Vec2 const& playerSize);
+	static WorldPhysics* create(b2Vec2 const& playerOrigin, cocos2d::Vec2 const& playerSize, float ppm);
 
-	WorldPhysics();
+	WorldPhysics(float ppm);
 	bool init(b2Vec2 const& playerOrigin, cocos2d::Vec2 const& playerSize);
 	~WorldPhysics();
 
@@ -20,4 +20,5 @@ public:
 private:
 	b2World *_world;
 	b2Body *_playerBody;
+	float _ppm;
 };

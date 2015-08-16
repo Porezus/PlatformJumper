@@ -2,9 +2,9 @@
 
 USING_NS_CC;
 
-WorldPhysics* WorldPhysics::create(b2Vec2 const& playerOrigin, Vec2 const& playerSize)
+WorldPhysics* WorldPhysics::create(b2Vec2 const& playerOrigin, Vec2 const& playerSize, float ppm)
 {
-	WorldPhysics *ret = new (std::nothrow) WorldPhysics();
+	WorldPhysics *ret = new (std::nothrow) WorldPhysics(ppm);
 	if (ret && ret->init(playerOrigin, playerSize))
 	{
 		ret->autorelease();
@@ -17,9 +17,10 @@ WorldPhysics* WorldPhysics::create(b2Vec2 const& playerOrigin, Vec2 const& playe
 	}
 }
 
-WorldPhysics::WorldPhysics()
+WorldPhysics::WorldPhysics(float ppm)
 	:_world(nullptr)
 	,_playerBody(nullptr)
+	,_ppm(ppm)
 {}
 
 bool WorldPhysics::init(b2Vec2 const& playerOrigin, Vec2 const& playerSize)
