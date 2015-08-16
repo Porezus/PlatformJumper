@@ -61,3 +61,22 @@ b2Vec2 WorldPhysics::GetPlayerPosition() const
 {
 	return _playerBody->GetPosition();
 }
+
+bool WorldPhysics::AddWallPolygon(b2Vec2 const& origin, b2PolygonShape const& shape)
+{
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_staticBody;
+	bodyDef.position = origin;
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &shape;
+	fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.2f;
+	fixtureDef.restitution = 0.8f;
+
+	auto body = _world->CreateBody(&bodyDef);
+	if (!body) return false;
+	body->CreateFixture(&fixtureDef);
+
+	return true;
+}
