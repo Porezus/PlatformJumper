@@ -17,6 +17,10 @@ Scene* HelloWorld::createScene()
     return scene;
 }
 
+HelloWorld::HelloWorld()
+	:_world(nullptr)
+{}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -54,6 +58,9 @@ bool HelloWorld::init()
 	auto overlay = Sprite::create("map.png");
 	overlay->setAnchorPoint(Vec2(0, 0));
 	this->addChild(overlay);
+
+	_world = WorldPhysics::create(b2Vec2(1, 1), Vec2(1, 1));
+	addChild(_world);
 
 	return true;
 }

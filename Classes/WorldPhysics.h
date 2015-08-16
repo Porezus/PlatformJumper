@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "Box2D\Box2D.h"
 
-class WorldPhysics : public cocos2d::Object
+class WorldPhysics : public cocos2d::Node
 {
 public:
 	static WorldPhysics* create(b2Vec2 const& playerOrigin, cocos2d::Vec2 const& playerSize);
