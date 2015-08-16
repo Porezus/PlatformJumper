@@ -58,7 +58,7 @@ bool HelloWorld::init()
 
 	_world = WorldPhysics::create(Vec2(150, 200), Size(15, 25), 200);
 	addChild(_world);
-	_world->AddWallRect(Rect(62, 640 - 588, 100, 35));
+	_world->AddWallRect(Rect(62, 640 - 589, 200, 588 - 556));
 
 	auto overlay = Sprite::create("map.png");
 	overlay->setAnchorPoint(Vec2(0, 0));
