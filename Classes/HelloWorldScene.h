@@ -21,6 +21,9 @@ public:
     CREATE_FUNC(HelloWorld);
 
 	void UpdatePositions();
+	void update(float dt) override;
+	void onEnter() override;
+	void onExit() override;
 
 private:
 	float _ptmRatio;

@@ -87,3 +87,23 @@ void HelloWorld::UpdatePositions()
 {
 	_playerSprite->setPosition(_world->GetPlayerPosition().x * _ptmRatio, _world->GetPlayerPosition().y * _ptmRatio);
 }
+
+void HelloWorld::update(float dt)
+{
+	Layer::update(dt);
+
+	_world->Step(dt);
+	UpdatePositions();
+}
+
+void HelloWorld::onEnter()
+{
+	Layer::onEnter();
+	scheduleUpdate();
+}
+
+void HelloWorld::onExit()
+{
+	unscheduleUpdate();
+	Layer::onExit();
+}
