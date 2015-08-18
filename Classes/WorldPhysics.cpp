@@ -89,3 +89,8 @@ bool WorldPhysics::AddWallRect(Rect const& rect)
 
 	return true;
 }
+
+void WorldPhysics::MovePlayer(b2Vec2 const& dir)
+{
+	_playerBody->ApplyLinearImpulse(dir, _playerBody->GetPosition(), false);
+}

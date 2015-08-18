@@ -24,6 +24,8 @@ public:
 	void onExit() override;
 
 private:
+	static const float MOVE_STEP;
+
 	WorldPhysics *_world;
 	cocos2d::Sprite *_playerSprite;
 	InputManager *_inputManager;

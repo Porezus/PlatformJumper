@@ -15,6 +15,7 @@ public:
 	void Step(float dt);
 	cocos2d::Vec2 GetPlayerPosition() const;
 	bool AddWallRect(cocos2d::Rect const& rect);
+	void MovePlayer(b2Vec2 const& dir);
 
 private:
 	b2World *_world;

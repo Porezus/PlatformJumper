@@ -76,6 +76,19 @@ void HelloWorld::update(float dt)
 {
 	Layer::update(dt);
 
+	if (_inputManager->IsLeft())
+	{
+		_world->MovePlayer(b2Vec2(-MOVE_STEP * dt, 0));
+	}
+	if (_inputManager->IsRight())
+	{
+		_world->MovePlayer(b2Vec2(MOVE_STEP * dt, 0));
+	}
+	if (_inputManager->IsJump())
+	{
+		_world->MovePlayer(b2Vec2(0, 0.005f));
+	}
+
 	_world->Step(dt);
 	UpdatePositions();
 }
@@ -91,3 +104,5 @@ void HelloWorld::onExit()
 	unscheduleUpdate();
 	Layer::onExit();
 }
+
+const float HelloWorld::MOVE_STEP = 0.06f;
