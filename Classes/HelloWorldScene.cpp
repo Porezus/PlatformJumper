@@ -20,6 +20,7 @@ Scene* HelloWorld::createScene()
 HelloWorld::HelloWorld()
 	:_world(nullptr)
 	,_playerSprite(nullptr)
+	,_inputManager(nullptr)
 {}
 
 // on "init" you need to initialize your instance
@@ -49,6 +50,19 @@ bool HelloWorld::init()
 	_playerSprite = Sprite::create("player.png");
 	UpdatePositions();
 	addChild(_playerSprite);
+
+	_inputManager = InputManager::create();
+	addChild(_inputManager);
+
+	auto eventListener = EventListenerKeyboard::create();
+	Director::getInstance()->getOpenGLView()->setIMEKeyboardState(true);
+	eventListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event) {
+		_inputManager->KeyPressed(keyCode);
+	};
+	eventListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event) {
+		_inputManager->KeyReleased(keyCode);
+	};
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
 
 	return true;
 }

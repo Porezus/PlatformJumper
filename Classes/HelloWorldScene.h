@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "WorldPhysics.h"
+#include "InputManager.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -25,6 +26,7 @@ public:
 private:
 	WorldPhysics *_world;
 	cocos2d::Sprite *_playerSprite;
+	InputManager *_inputManager;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
