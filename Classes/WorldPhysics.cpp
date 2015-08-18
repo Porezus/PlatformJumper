@@ -25,6 +25,11 @@ WorldPhysics::WorldPhysics(float ppm)
 
 bool WorldPhysics::init(Vec2 const& playerOrigin, Size const& playerSize)
 {
+	if (!Node::init())
+	{
+		return false;
+	}
+
 	_world = new (std::nothrow) b2World(b2Vec2(0.0f, -9.8f));
 	if (!_world) return false;
 
