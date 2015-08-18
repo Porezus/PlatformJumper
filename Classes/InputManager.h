@@ -14,9 +14,9 @@ public:
 	bool IsJump() const;
 
 private:
-	static const cocos2d::EventKeyboard::KeyCode LEFT = cocos2d::EventKeyboard::KeyCode::KEY_L;
-	static const cocos2d::EventKeyboard::KeyCode RIGHT = cocos2d::EventKeyboard::KeyCode::KEY_R;
-	static const cocos2d::EventKeyboard::KeyCode JUMP = cocos2d::EventKeyboard::KeyCode::KEY_U;
+	static const cocos2d::EventKeyboard::KeyCode LEFT = cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW;
+	static const cocos2d::EventKeyboard::KeyCode RIGHT = cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW;
+	static const cocos2d::EventKeyboard::KeyCode JUMP = cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW;
 
 	bool _left, _right, _jump;
 };
