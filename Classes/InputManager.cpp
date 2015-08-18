@@ -41,3 +41,18 @@ void InputManager::KeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
 		break;
 	}
 }
+
+bool InputManager::IsLeft() const
+{
+	return _left && !_right;
+}
+
+bool InputManager::IsRight() const
+{
+	return _right && !_left;
+}
+
+bool InputManager::IsJump() const
+{
+	return _jump;
+}

@@ -9,6 +9,9 @@ public:
 	InputManager();
 	void KeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
 	void KeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
+	bool IsLeft() const;
+	bool IsRight() const;
+	bool IsJump() const;
 
 private:
 	static const cocos2d::EventKeyboard::KeyCode LEFT = cocos2d::EventKeyboard::KeyCode::KEY_L;
