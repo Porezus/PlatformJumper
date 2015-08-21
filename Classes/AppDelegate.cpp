@@ -50,6 +50,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	// create a scene. it's an autorelease object
 	auto scene = HelloWorld::createScene();
+	if (!scene)
+		CCASSERT(false, "Can't create scene");
 
 	// run
 	director->runWithScene(scene);
