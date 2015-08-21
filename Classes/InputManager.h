@@ -6,7 +6,7 @@ class InputManager : public cocos2d::Node
 {
 public:
 	CREATE_FUNC(InputManager);
-	InputManager();
+	bool init();
 
 	bool IsLeft() const;
 	bool IsRight() const;

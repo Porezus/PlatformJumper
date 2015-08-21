@@ -2,10 +2,17 @@
 
 USING_NS_CC;
 
-InputManager::InputManager()
+bool InputManager::init()
 {
+	if (!Node::init())
+		return false;
+
 	auto eventListener = EventListenerKeyboard::create();
+	if (!eventListener)
+		return false;
+
 	Director::getInstance()->getOpenGLView()->setIMEKeyboardState(true);
+
 	eventListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
 	{
 		m_pressed.insert(keyCode);
@@ -14,7 +21,9 @@ InputManager::InputManager()
 	{
 		m_pressed.erase(keyCode);
 	};
+
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+	return true;
 }
 
 bool InputManager::IsLeft() const
