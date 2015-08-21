@@ -54,16 +54,6 @@ bool HelloWorld::init()
 	_inputManager = InputManager::create();
 	addChild(_inputManager);
 
-	auto eventListener = EventListenerKeyboard::create();
-	Director::getInstance()->getOpenGLView()->setIMEKeyboardState(true);
-	eventListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event) {
-		_inputManager->KeyPressed(keyCode);
-	};
-	eventListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event) {
-		_inputManager->KeyReleased(keyCode);
-	};
-	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
-
 	return true;
 }
 

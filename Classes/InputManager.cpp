@@ -1,10 +1,22 @@
 #include "InputManager.h"
 
+USING_NS_CC;
+
 InputManager::InputManager()
 	:_left(false)
 	,_right(false)
 	,_jump(false)
-{}
+{
+	auto eventListener = EventListenerKeyboard::create();
+	Director::getInstance()->getOpenGLView()->setIMEKeyboardState(true);
+	eventListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event) {
+		KeyPressed(keyCode);
+	};
+	eventListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event) {
+		KeyReleased(keyCode);
+	};
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+}
 
 void InputManager::KeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
 {
