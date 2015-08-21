@@ -7,14 +7,12 @@ class InputManager : public cocos2d::Node
 public:
 	CREATE_FUNC(InputManager);
 	InputManager();
+
 	bool IsLeft() const;
 	bool IsRight() const;
 	bool IsJump() const;
 
 private:
-	static const cocos2d::EventKeyboard::KeyCode LEFT = cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW;
-	static const cocos2d::EventKeyboard::KeyCode RIGHT = cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW;
-	static const cocos2d::EventKeyboard::KeyCode JUMP = cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW;
-
-	bool _left, _right, _jump;
+	bool IsPressed(cocos2d::EventKeyboard::KeyCode keyCode) const;
+	std::set<cocos2d::EventKeyboard::KeyCode> m_pressed;
 };
