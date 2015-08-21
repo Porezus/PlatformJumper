@@ -7,8 +7,6 @@ class InputManager : public cocos2d::Node
 public:
 	CREATE_FUNC(InputManager);
 	InputManager();
-	void KeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
-	void KeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 	bool IsLeft() const;
 	bool IsRight() const;
 	bool IsJump() const;

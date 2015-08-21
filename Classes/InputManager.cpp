@@ -9,49 +9,41 @@ InputManager::InputManager()
 {
 	auto eventListener = EventListenerKeyboard::create();
 	Director::getInstance()->getOpenGLView()->setIMEKeyboardState(true);
-	eventListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event) {
-		KeyPressed(keyCode);
+	eventListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
+	{
+		switch (keyCode)
+		{
+		case LEFT:
+			_left = true;
+			break;
+
+		case RIGHT:
+			_right = true;
+			break;
+
+		case JUMP:
+			_jump = true;
+			break;
+		}
 	};
-	eventListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event) {
-		KeyReleased(keyCode);
+	eventListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event)
+	{
+		switch (keyCode)
+		{
+		case LEFT:
+			_left = false;
+			break;
+
+		case RIGHT:
+			_right = false;
+			break;
+
+		case JUMP:
+			_jump = false;
+			break;
+		}
 	};
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
-}
-
-void InputManager::KeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	switch (keyCode)
-	{
-	case LEFT:
-		_left = true;
-		break;
-
-	case RIGHT:
-		_right = true;
-		break;
-
-	case JUMP:
-		_jump = true;
-		break;
-	}
-}
-
-void InputManager::KeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	switch (keyCode)
-	{
-	case LEFT:
-		_left = false;
-		break;
-
-	case RIGHT:
-		_right = false;
-		break;
-
-	case JUMP:
-		_jump = false;
-		break;
-	}
 }
 
 bool InputManager::IsLeft() const
