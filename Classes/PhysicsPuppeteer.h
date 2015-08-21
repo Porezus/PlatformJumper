@@ -1,0 +1,41 @@
+#pragma once
+
+#include "cocos2d.h"
+#include "Box2D\Box2D.h"
+
+class PhysicsPuppeteer;
+class PhysicsEngine;
+
+struct PhysicsContactInfo
+{
+	b2Fixture *myFixture;			 ///< Cannot be null.
+	b2Fixture *theirFixture;		  ///< Cannot be null.
+	PhysicsPuppeteer *theirPuppeteer; ///< Is null if and only if object has no puppeteer.
+
+	template <class T>
+	bool isClass() const
+	{
+		return (nullptr != dynamic_cast<T *>(theirPuppeteer));
+	}
+};
+
+class PhysicsPuppeteer : public cocos2d::Node
+{
+public:
+	PhysicsPuppeteer();
+	~PhysicsPuppeteer();
+	bool init(const b2BodyDef &bodyDef, PhysicsEngine *engine);
+
+	PhysicsEngine *getEngine() const;
+	b2Body *getBody() const;
+
+	virtual void didUpdatePhysics() = 0;
+	virtual void willUpdatePhysics(float dt) = 0;
+
+	virtual void didBeginContact(const PhysicsContactInfo &info) { CC_UNUSED_PARAM(info); }
+	virtual void didEndContact(const PhysicsContactInfo &info) { CC_UNUSED_PARAM(info); }
+
+private:
+	b2Body *m_body;
+	PhysicsEngine *m_engine;
+};
