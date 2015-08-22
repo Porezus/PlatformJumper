@@ -16,10 +16,10 @@ public:
 
 	void Move(float dx);
 	void Jump();
+	bool IsFacingLeft() const;
 
 private:
 	void SetFacing(bool facingLeft);
-	bool IsFacingLeft() const;
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
