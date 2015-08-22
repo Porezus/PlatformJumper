@@ -29,6 +29,7 @@ bool Player::init(Vec2 const& origin, Size const& size, bool facingLeft)
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
+	bodyDef.fixedRotation = true;
 	bodyDef.position.Set(origin.x / m_physEngine->getPtmRatio(),
 		origin.y / m_physEngine->getPtmRatio());
 	if (!m_physEngine->createBody(bodyDef))
