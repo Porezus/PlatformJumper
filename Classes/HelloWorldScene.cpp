@@ -110,6 +110,17 @@ void HelloWorld::update(float dt)
 	{
 		setPositionX(getPositionX() - CAM_MOVE_STEP * dt);
 	}
+
+	const float UPPER_DEAD_ZONE_HEIGHT = 0.1f * m_cameraSize.height;
+	if (m_cameraSize.height - GetPositionInCamera(m_player).y < UPPER_DEAD_ZONE_HEIGHT)
+	{
+		setPositionY(getPositionY() - (UPPER_DEAD_ZONE_HEIGHT - (m_cameraSize.height - GetPositionInCamera(m_player).y)));
+	}
+	const float LOWER_DEAD_ZONE_HEIGHT = 0.3f * m_cameraSize.height;
+	if (GetPositionInCamera(m_player).y < LOWER_DEAD_ZONE_HEIGHT)
+	{
+		setPositionY(getPositionY() + (LOWER_DEAD_ZONE_HEIGHT - GetPositionInCamera(m_player).y));
+	}
 }
 
 void HelloWorld::onEnter()
