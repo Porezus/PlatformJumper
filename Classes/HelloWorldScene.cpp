@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "PhysicsEngine.h"
 
 USING_NS_CC;
 
@@ -21,6 +22,9 @@ Scene* HelloWorld::createScene()
 	return scene;
 }
 
+HelloWorld::HelloWorld()
+{}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -29,6 +33,10 @@ bool HelloWorld::init()
 
 	//Size visibleSize = Director::getInstance()->getVisibleSize();
 	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	m_physEngine = PhysicsEngine::create(this, 200);
+	if (!m_physEngine.Keeps())
+		return false;
 
 	return true;
 }
