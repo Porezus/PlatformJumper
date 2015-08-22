@@ -70,8 +70,8 @@ void PhysicsEngine::tick(float dt)
 		}
 	}
 
-	int velocityIterations = 100;
-	int positionIterations = 20;
+	int velocityIterations = 10;
+	int positionIterations = 10;
 
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
