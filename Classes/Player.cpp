@@ -78,6 +78,8 @@ void Player::Jump()
 
 void Player::SetFacing(bool facingLeft)
 {
+	m_facingLeft = facingLeft;
+
 	if (facingLeft)
 	{
 		setScaleX(-1);
@@ -86,4 +88,9 @@ void Player::SetFacing(bool facingLeft)
 	{
 		setScaleX(1);
 	}
+}
+
+bool Player::IsFacingLeft() const
+{
+	return m_facingLeft;
 }

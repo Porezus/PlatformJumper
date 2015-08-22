@@ -19,7 +19,9 @@ public:
 
 private:
 	void SetFacing(bool facingLeft);
+	bool IsFacingLeft() const;
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
+	bool m_facingLeft;
 };
