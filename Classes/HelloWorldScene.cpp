@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "PhysicsEngine.h"
+#include "GameWorld.h"
 
 USING_NS_CC;
 
@@ -37,6 +38,10 @@ bool HelloWorld::init()
 	m_physEngine = PhysicsEngine::create(this, 200);
 	if (!m_physEngine.Keeps())
 		return false;
+
+	auto gameWorld = GameWorld::create(m_physEngine);
+	gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
+	addChild(gameWorld);
 
 	return true;
 }
