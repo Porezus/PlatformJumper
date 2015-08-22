@@ -27,6 +27,8 @@ public:
 	virtual void onExit() override;
 
 private:
+	cocos2d::Vec2 GetPositionInCamera(cocos2d::Node *node) const;
+
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;
 	InputManager *m_inputManager;

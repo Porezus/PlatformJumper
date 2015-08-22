@@ -81,6 +81,16 @@ void HelloWorld::update(float dt)
 		m_player->Jump();
 	}
 
+	const float DEAD_ZONE_WIDTH = m_cameraSize.width * 0.1f;
+	if (GetPositionInCamera(m_player).x < DEAD_ZONE_WIDTH)
+	{
+		setPositionX(getPositionX() + (DEAD_ZONE_WIDTH - GetPositionInCamera(m_player).x));
+	}
+	if (GetPositionInCamera(m_player).x > m_cameraSize.width - DEAD_ZONE_WIDTH)
+	{
+		setPositionX(getPositionX() - (GetPositionInCamera(m_player).x - (m_cameraSize.width - DEAD_ZONE_WIDTH)));
+	}
+
 	const float CAM_MOVE_STEP = 100.0f;
 	if (getPositionX() < m_targetPosX)
 	{
@@ -102,4 +112,9 @@ void HelloWorld::onExit()
 {
 	unscheduleUpdate();
 	Layer::onExit();
+}
+
+Vec2 HelloWorld::GetPositionInCamera(Node *node) const
+{
+	return node->getPosition() + getPosition();
 }
