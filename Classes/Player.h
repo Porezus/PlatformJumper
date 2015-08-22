@@ -4,13 +4,17 @@
 #include "ObjectKeeper.h"
 
 class PhysicsEngine;
+class NodePhysicsPuppeteer;
 
 class Player : public cocos2d::Sprite
 {
 public:
-	static Player* create(PhysicsEngine *physEngine);
+	static Player* create(PhysicsEngine *physEngine, cocos2d::Vec2 const& origin, cocos2d::Size const& size);
+	
 	Player(PhysicsEngine *physEngine);
+	bool init(cocos2d::Vec2 const& origin, cocos2d::Size const& size);
 
 private:
 	ObjectKeeper<PhysicsEngine> m_physEngine;
+	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
 };

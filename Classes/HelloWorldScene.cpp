@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "PhysicsEngine.h"
 #include "GameWorld.h"
+#include "Player.h"
 
 USING_NS_CC;
 
@@ -40,8 +41,15 @@ bool HelloWorld::init()
 		return false;
 
 	auto gameWorld = GameWorld::create(m_physEngine);
+	if (!gameWorld)
+		return false;
 	gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
 	addChild(gameWorld);
+
+	auto player = Player::create(m_physEngine, Vec2(150, 200), Size(15, 25));
+	if (!player)
+		return false;
+	addChild(player);
 
 	return true;
 }
@@ -49,6 +57,7 @@ bool HelloWorld::init()
 void HelloWorld::update(float dt)
 {
 	Layer::update(dt);
+	m_physEngine->tick(dt);
 }
 
 void HelloWorld::onEnter()
