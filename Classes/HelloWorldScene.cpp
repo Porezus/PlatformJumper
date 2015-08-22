@@ -47,7 +47,7 @@ bool HelloWorld::init()
 	gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
 	addChild(gameWorld);
 
-	m_player = Player::create(m_physEngine, Vec2(150, 200), Size(15, 25));
+	m_player = Player::create(m_physEngine, Vec2(150, 200), Size(15, 25), false);
 	if (!m_player)
 		return false;
 	addChild(m_player);

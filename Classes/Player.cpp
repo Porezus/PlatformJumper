@@ -4,10 +4,10 @@
 
 USING_NS_CC;
 
-Player* Player::create(PhysicsEngine *physEngine, Vec2 const& origin, Size const& size)
+Player* Player::create(PhysicsEngine *physEngine, Vec2 const& origin, Size const& size, bool facingLeft)
 {
 	Player *pRet = new (std::nothrow) Player(physEngine);
-	if (pRet && pRet->init(origin, size))
+	if (pRet && pRet->init(origin, size, facingLeft))
 	{
 		pRet->autorelease();
 	}
@@ -22,7 +22,7 @@ Player::Player(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool Player::init(Vec2 const& origin, Size const& size)
+bool Player::init(Vec2 const& origin, Size const& size, bool facingLeft)
 {
 	if (!Sprite::initWithFile("player.png"))
 		return false;
@@ -50,6 +50,8 @@ bool Player::init(Vec2 const& origin, Size const& size)
 	if (!m_puppeteer->getBody()->CreateFixture(&fixtureDef))
 		CCASSERT(false, "Can't create fixture");
 
+	SetFacing(facingLeft);
+
 	return true;
 }
 
@@ -57,10 +59,31 @@ void Player::Move(float dx)
 {
 	auto body = m_puppeteer->getBody();
 	body->ApplyLinearImpulse(b2Vec2(dx, 0), body->GetPosition(), false);
+
+	if (dx > 0)
+	{
+		SetFacing(false);
+	}
+	if (dx < 0)
+	{
+		SetFacing(true);
+	}
 }
 
 void Player::Jump()
 {
 	auto body = m_puppeteer->getBody();
 	body->ApplyLinearImpulse(b2Vec2(0, 0.005f), body->GetPosition(), false);
+}
+
+void Player::SetFacing(bool facingLeft)
+{
+	if (facingLeft)
+	{
+		setScaleX(-1);
+	}
+	else
+	{
+		setScaleX(1);
+	}
 }
