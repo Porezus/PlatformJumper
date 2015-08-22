@@ -6,9 +6,13 @@ Scene* HelloWorld::createScene()
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
+	if (!scene)
+		return nullptr;
 	
 	// 'layer' is an autorelease object
 	auto layer = HelloWorld::create();
+	if (!layer)
+		return nullptr;
 
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -17,70 +21,21 @@ Scene* HelloWorld::createScene()
 	return scene;
 }
 
-HelloWorld::HelloWorld()
-	:_world(nullptr)
-	,_playerSprite(nullptr)
-	,_inputManager(nullptr)
-{}
-
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-	//////////////////////////////
-	// 1. super init first
-	if ( !Layer::init() )
-	{
+	if (!Layer::init())
 		return false;
-	}
-	
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	/////////////////////////////
-	// 3. add your codes below...
-
-	_world = WorldPhysics::create(Vec2(150, 200), Size(15, 25), 200);
-	addChild(_world);
-	_world->AddWallRect(Rect(62, 640 - 589, 200, 588 - 556));
-
-	auto overlay = Sprite::create("map.png");
-	overlay->setAnchorPoint(Vec2(0, 0));
-	this->addChild(overlay);
-
-	_playerSprite = Sprite::create("player.png");
-	UpdatePositions();
-	addChild(_playerSprite);
-
-	_inputManager = InputManager::create();
-	addChild(_inputManager);
+	//Size visibleSize = Director::getInstance()->getVisibleSize();
+	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	return true;
-}
-
-void HelloWorld::UpdatePositions()
-{
-	_playerSprite->setPosition(_world->GetPlayerPosition());
 }
 
 void HelloWorld::update(float dt)
 {
 	Layer::update(dt);
-
-	if (_inputManager->IsLeft())
-	{
-		_world->MovePlayer(b2Vec2(-MOVE_STEP * dt, 0));
-	}
-	if (_inputManager->IsRight())
-	{
-		_world->MovePlayer(b2Vec2(MOVE_STEP * dt, 0));
-	}
-	if (_inputManager->IsJump())
-	{
-		_world->MovePlayer(b2Vec2(0, 0.005f));
-	}
-
-	_world->Step(dt);
-	UpdatePositions();
 }
 
 void HelloWorld::onEnter()
@@ -94,5 +49,3 @@ void HelloWorld::onExit()
 	unscheduleUpdate();
 	Layer::onExit();
 }
-
-const float HelloWorld::MOVE_STEP = 0.06f;
