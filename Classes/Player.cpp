@@ -52,3 +52,9 @@ bool Player::init(Vec2 const& origin, Size const& size)
 
 	return true;
 }
+
+void Player::Move(float dx)
+{
+	auto body = m_puppeteer->getBody();
+	body->ApplyLinearImpulse(b2Vec2(dx, 0), body->GetPosition(), false);
+}

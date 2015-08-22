@@ -2,6 +2,7 @@
 #include "PhysicsEngine.h"
 #include "GameWorld.h"
 #include "Player.h"
+#include "InputManager.h"
 
 USING_NS_CC;
 
@@ -46,10 +47,15 @@ bool HelloWorld::init()
 	gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
 	addChild(gameWorld);
 
-	auto player = Player::create(m_physEngine, Vec2(150, 200), Size(15, 25));
-	if (!player)
+	m_player = Player::create(m_physEngine, Vec2(150, 200), Size(15, 25));
+	if (!m_player)
 		return false;
-	addChild(player);
+	addChild(m_player);
+
+	m_inputManager = InputManager::create();
+	if (!m_inputManager)
+		return false;
+	addChild(m_inputManager);
 
 	return true;
 }
@@ -58,6 +64,16 @@ void HelloWorld::update(float dt)
 {
 	Layer::update(dt);
 	m_physEngine->tick(dt);
+
+	const float MOVE_STEP = 0.06f;
+	if (m_inputManager->IsLeft())
+	{
+		m_player->Move(-MOVE_STEP * dt);
+	}
+	if (m_inputManager->IsRight())
+	{
+		m_player->Move(MOVE_STEP * dt);
+	}
 }
 
 void HelloWorld::onEnter()

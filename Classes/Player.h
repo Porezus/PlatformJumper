@@ -14,6 +14,8 @@ public:
 	Player(PhysicsEngine *physEngine);
 	bool init(cocos2d::Vec2 const& origin, cocos2d::Size const& size);
 
+	void Move(float dx);
+
 private:
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;

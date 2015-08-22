@@ -5,6 +5,8 @@
 #include "ObjectKeeper.h"
 
 class PhysicsEngine;
+class Player;
+class InputManager;
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -26,6 +28,8 @@ public:
 
 private:
 	ObjectKeeper<PhysicsEngine> m_physEngine;
+	Player *m_player;
+	InputManager *m_inputManager;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
