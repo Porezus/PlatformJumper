@@ -58,3 +58,9 @@ void Player::Move(float dx)
 	auto body = m_puppeteer->getBody();
 	body->ApplyLinearImpulse(b2Vec2(dx, 0), body->GetPosition(), false);
 }
+
+void Player::Jump()
+{
+	auto body = m_puppeteer->getBody();
+	body->ApplyLinearImpulse(b2Vec2(0, 0.005f), body->GetPosition(), false);
+}

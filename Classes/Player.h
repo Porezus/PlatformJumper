@@ -15,6 +15,7 @@ public:
 	bool init(cocos2d::Vec2 const& origin, cocos2d::Size const& size);
 
 	void Move(float dx);
+	void Jump();
 
 private:
 	ObjectKeeper<PhysicsEngine> m_physEngine;

@@ -65,7 +65,7 @@ void HelloWorld::update(float dt)
 	Layer::update(dt);
 	m_physEngine->tick(dt);
 
-	const float MOVE_STEP = 0.06f;
+	const float MOVE_STEP = 0.08f;
 	if (m_inputManager->IsLeft())
 	{
 		m_player->Move(-MOVE_STEP * dt);
@@ -73,6 +73,10 @@ void HelloWorld::update(float dt)
 	if (m_inputManager->IsRight())
 	{
 		m_player->Move(MOVE_STEP * dt);
+	}
+	if (m_inputManager->IsJump())
+	{
+		m_player->Jump();
 	}
 }
 
