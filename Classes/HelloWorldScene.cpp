@@ -81,7 +81,7 @@ void HelloWorld::update(float dt)
 		m_player->Jump();
 	}
 
-	const float DEAD_ZONE_WIDTH = m_cameraSize.width * 0.1f;
+	const float DEAD_ZONE_WIDTH = m_cameraSize.width * 0.25f;
 	if (GetPositionInCamera(m_player).x < DEAD_ZONE_WIDTH)
 	{
 		setPositionX(getPositionX() + (DEAD_ZONE_WIDTH - GetPositionInCamera(m_player).x));
@@ -91,7 +91,17 @@ void HelloWorld::update(float dt)
 		setPositionX(getPositionX() - (GetPositionInCamera(m_player).x - (m_cameraSize.width - DEAD_ZONE_WIDTH)));
 	}
 
-	const float CAM_MOVE_STEP = 100.0f;
+	const float KEEP_VISIBLE_GAP = m_cameraSize.width * 0.7f;
+	if (!m_player->IsFacingLeft() && m_cameraSize.width - GetPositionInCamera(m_player).x < KEEP_VISIBLE_GAP)
+	{
+		m_targetPosX = getPosition().x - (KEEP_VISIBLE_GAP - (m_cameraSize.width - GetPositionInCamera(m_player).x));
+	}
+	if (m_player->IsFacingLeft() && GetPositionInCamera(m_player).x < KEEP_VISIBLE_GAP)
+	{
+		m_targetPosX = getPosition().x + (KEEP_VISIBLE_GAP - GetPositionInCamera(m_player).x);
+	}
+
+	const float CAM_MOVE_STEP = 200.0f;
 	if (getPositionX() < m_targetPosX)
 	{
 		setPositionX(getPositionX() + CAM_MOVE_STEP * dt);
