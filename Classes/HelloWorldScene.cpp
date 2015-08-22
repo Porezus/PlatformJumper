@@ -26,6 +26,8 @@ Scene* HelloWorld::createScene()
 }
 
 HelloWorld::HelloWorld()
+	: m_cameraSize(480, 320)
+	, m_targetPosX(0)
 {}
 
 // on "init" you need to initialize your instance
@@ -77,6 +79,16 @@ void HelloWorld::update(float dt)
 	if (m_inputManager->IsJump())
 	{
 		m_player->Jump();
+	}
+
+	const float CAM_MOVE_STEP = 100.0f;
+	if (getPositionX() < m_targetPosX)
+	{
+		setPositionX(getPositionX() + CAM_MOVE_STEP * dt);
+	}
+	if (getPositionX() > m_targetPosX)
+	{
+		setPositionX(getPositionX() - CAM_MOVE_STEP * dt);
 	}
 }
 

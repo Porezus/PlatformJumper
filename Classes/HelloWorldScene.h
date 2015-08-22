@@ -30,6 +30,9 @@ private:
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;
 	InputManager *m_inputManager;
+
+	cocos2d::Size m_cameraSize;
+	float m_targetPosX;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
