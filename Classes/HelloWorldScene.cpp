@@ -122,12 +122,16 @@ void HelloWorld::update(float dt)
 	const float UPPER_DEAD_ZONE_HEIGHT = 0.1f * m_cameraSize.height;
 	if (m_cameraSize.height - GetPositionInCamera(m_player).y < UPPER_DEAD_ZONE_HEIGHT)
 	{
-		setPositionY(getPositionY() - (UPPER_DEAD_ZONE_HEIGHT - (m_cameraSize.height - GetPositionInCamera(m_player).y)));
+		setPositionY(BindCameraPositionYWithinMap(
+			getPositionY() - (UPPER_DEAD_ZONE_HEIGHT - (m_cameraSize.height - GetPositionInCamera(m_player).y))
+		));
 	}
 	const float LOWER_DEAD_ZONE_HEIGHT = 0.3f * m_cameraSize.height;
 	if (GetPositionInCamera(m_player).y < LOWER_DEAD_ZONE_HEIGHT)
 	{
-		setPositionY(getPositionY() + (LOWER_DEAD_ZONE_HEIGHT - GetPositionInCamera(m_player).y));
+		setPositionY(BindCameraPositionYWithinMap(
+			getPositionY() + (LOWER_DEAD_ZONE_HEIGHT - GetPositionInCamera(m_player).y)
+		));
 	}
 }
 
@@ -157,4 +161,15 @@ float HelloWorld::BindCameraPositionXWithinMap(float x) const
 		return -(m_gameWorld->getContentSize().width - m_cameraSize.width);
 
 	return x;
+}
+
+float HelloWorld::BindCameraPositionYWithinMap(float y) const
+{
+	if (y > 0)
+		return 0;
+
+	if (-y + m_cameraSize.height > m_gameWorld->getContentSize().height)
+		return -(m_gameWorld->getContentSize().height - m_cameraSize.height);
+
+	return y;
 }
