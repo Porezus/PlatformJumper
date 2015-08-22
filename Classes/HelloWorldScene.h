@@ -7,6 +7,7 @@
 class PhysicsEngine;
 class Player;
 class InputManager;
+class GameWorld;
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -28,10 +29,12 @@ public:
 
 private:
 	cocos2d::Vec2 GetPositionInCamera(cocos2d::Node *node) const;
+	float BindCameraPositionXWithinMap(float x) const;
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;
 	InputManager *m_inputManager;
+	GameWorld *m_gameWorld;
 
 	cocos2d::Size m_cameraSize;
 	float m_targetPosX;

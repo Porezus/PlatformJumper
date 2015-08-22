@@ -43,11 +43,11 @@ bool HelloWorld::init()
 	if (!m_physEngine.Keeps())
 		return false;
 
-	auto gameWorld = GameWorld::create(m_physEngine);
-	if (!gameWorld)
+	m_gameWorld = GameWorld::create(m_physEngine);
+	if (!m_gameWorld)
 		return false;
-	gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
-	addChild(gameWorld);
+	m_gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
+	addChild(m_gameWorld);
 
 	m_player = Player::create(m_physEngine, Vec2(150, 200), Size(15, 25), false);
 	if (!m_player)
@@ -84,21 +84,29 @@ void HelloWorld::update(float dt)
 	const float DEAD_ZONE_WIDTH = m_cameraSize.width * 0.25f;
 	if (GetPositionInCamera(m_player).x < DEAD_ZONE_WIDTH)
 	{
-		setPositionX(getPositionX() + (DEAD_ZONE_WIDTH - GetPositionInCamera(m_player).x));
+		setPositionX(BindCameraPositionXWithinMap(
+			getPositionX() + (DEAD_ZONE_WIDTH - GetPositionInCamera(m_player).x)
+		));
 	}
 	if (GetPositionInCamera(m_player).x > m_cameraSize.width - DEAD_ZONE_WIDTH)
 	{
-		setPositionX(getPositionX() - (GetPositionInCamera(m_player).x - (m_cameraSize.width - DEAD_ZONE_WIDTH)));
+		setPositionX(BindCameraPositionXWithinMap(
+			getPositionX() - (GetPositionInCamera(m_player).x - (m_cameraSize.width - DEAD_ZONE_WIDTH))
+		));
 	}
 
 	const float KEEP_VISIBLE_GAP = m_cameraSize.width * 0.7f;
 	if (!m_player->IsFacingLeft() && m_cameraSize.width - GetPositionInCamera(m_player).x < KEEP_VISIBLE_GAP)
 	{
-		m_targetPosX = getPosition().x - (KEEP_VISIBLE_GAP - (m_cameraSize.width - GetPositionInCamera(m_player).x));
+		m_targetPosX = BindCameraPositionXWithinMap(
+			getPosition().x - (KEEP_VISIBLE_GAP - (m_cameraSize.width - GetPositionInCamera(m_player).x))
+		);
 	}
 	if (m_player->IsFacingLeft() && GetPositionInCamera(m_player).x < KEEP_VISIBLE_GAP)
 	{
-		m_targetPosX = getPosition().x + (KEEP_VISIBLE_GAP - GetPositionInCamera(m_player).x);
+		m_targetPosX = BindCameraPositionXWithinMap(
+			getPosition().x + (KEEP_VISIBLE_GAP - GetPositionInCamera(m_player).x)
+		);
 	}
 
 	const float CAM_MOVE_STEP = 200.0f;
@@ -138,4 +146,15 @@ void HelloWorld::onExit()
 Vec2 HelloWorld::GetPositionInCamera(Node *node) const
 {
 	return node->getPosition() + getPosition();
+}
+
+float HelloWorld::BindCameraPositionXWithinMap(float x) const
+{
+	if (x > 0)
+		return 0;
+
+	if (-x + m_cameraSize.width > m_gameWorld->getContentSize().width)
+		return -(m_gameWorld->getContentSize().width - m_cameraSize.width);
+
+	return x;
 }
