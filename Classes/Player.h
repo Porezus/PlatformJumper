@@ -6,7 +6,7 @@
 class PhysicsEngine;
 class NodePhysicsPuppeteer;
 
-class Player : public cocos2d::Sprite
+class Player : public cocos2d::SpriteBatchNode
 {
 public:
 	static Player* create(PhysicsEngine *physEngine, cocos2d::Vec2 const& origin, cocos2d::Size const& size, bool facingLeft);
@@ -23,5 +23,6 @@ private:
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
+	cocos2d::Sprite *m_sprite;
 	bool m_facingLeft;
 };

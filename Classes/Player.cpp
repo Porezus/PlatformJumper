@@ -24,8 +24,13 @@ Player::Player(PhysicsEngine *physEngine)
 
 bool Player::init(Vec2 const& origin, Size const& size, bool facingLeft)
 {
-	if (!Sprite::initWithFile("player.png"))
+	if (!SpriteBatchNode::initWithFile("player.png"))
 		return false;
+
+	m_sprite = Sprite::createWithTexture(getTexture());
+	if (!m_sprite)
+		return false;
+	addChild(m_sprite);
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -35,7 +40,7 @@ bool Player::init(Vec2 const& origin, Size const& size, bool facingLeft)
 	if (!m_physEngine->createBody(bodyDef))
 		CCASSERT(false, "Can't create body");
 
-	m_puppeteer = NodePhysicsPuppeteer::create(this, bodyDef, m_physEngine);
+	m_puppeteer = NodePhysicsPuppeteer::create(m_sprite, bodyDef, m_physEngine);
 	if (!m_puppeteer.Keeps())
 		return false;
 
@@ -83,11 +88,11 @@ void Player::SetFacing(bool facingLeft)
 
 	if (facingLeft)
 	{
-		setScaleX(-1);
+		m_sprite->setScaleX(-1);
 	}
 	else
 	{
-		setScaleX(1);
+		m_sprite->setScaleX(1);
 	}
 }
 
