@@ -9,10 +9,10 @@ class NodePhysicsPuppeteer;
 class Player : public cocos2d::SpriteBatchNode
 {
 public:
-	static Player* create(PhysicsEngine *physEngine, cocos2d::Vec2 const& origin, cocos2d::Size const& size, bool facingLeft);
+	static Player* create(PhysicsEngine *physEngine, cocos2d::Vec2 const& origin, bool facingLeft);
 	
 	Player(PhysicsEngine *physEngine);
-	bool init(cocos2d::Vec2 const& origin, cocos2d::Size const& size, bool facingLeft);
+	bool init(cocos2d::Vec2 const& origin, bool facingLeft);
 
 	void Move(float dx);
 	void Jump();

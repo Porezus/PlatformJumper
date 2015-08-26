@@ -4,10 +4,10 @@
 
 USING_NS_CC;
 
-Player* Player::create(PhysicsEngine *physEngine, Vec2 const& origin, Size const& size, bool facingLeft)
+Player* Player::create(PhysicsEngine *physEngine, Vec2 const& origin, bool facingLeft)
 {
 	Player *pRet = new (std::nothrow) Player(physEngine);
-	if (pRet && pRet->init(origin, size, facingLeft))
+	if (pRet && pRet->init(origin, facingLeft))
 	{
 		pRet->autorelease();
 	}
@@ -22,14 +22,17 @@ Player::Player(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool Player::init(Vec2 const& origin, Size const& size, bool facingLeft)
+bool Player::init(Vec2 const& origin, bool facingLeft)
 {
-	if (!SpriteBatchNode::initWithFile("player.png"))
+	if (!SpriteBatchNode::initWithFile("player_atlas.png"))
 		return false;
 
-	m_sprite = Sprite::createWithTexture(getTexture());
+	const Size idleSize(45, 63);
+
+	m_sprite = Sprite::createWithTexture(getTexture(), Rect(Vec2(), idleSize));
 	if (!m_sprite)
 		return false;
+	m_sprite->setAnchorPoint(Vec2(0.5f, 0.45f));
 	addChild(m_sprite);
 
 	b2BodyDef bodyDef;
@@ -45,8 +48,8 @@ bool Player::init(Vec2 const& origin, Size const& size, bool facingLeft)
 		return false;
 
 	b2PolygonShape shape;
-	shape.SetAsBox(size.width / 2 / m_physEngine->getPtmRatio(),
-		size.height / 2 / m_physEngine->getPtmRatio());
+	shape.SetAsBox(45.0f / 2 / m_physEngine->getPtmRatio(),
+		51.0f / 2 / m_physEngine->getPtmRatio());
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
@@ -79,7 +82,7 @@ void Player::Move(float dx)
 void Player::Jump()
 {
 	auto body = m_puppeteer->getBody();
-	body->ApplyLinearImpulse(b2Vec2(0, 0.005f), body->GetPosition(), false);
+	body->ApplyLinearImpulse(b2Vec2(0, 0.04f), body->GetPosition(), false);
 }
 
 void Player::SetFacing(bool facingLeft)

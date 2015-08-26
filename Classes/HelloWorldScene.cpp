@@ -49,7 +49,7 @@ bool HelloWorld::init()
 	m_gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
 	addChild(m_gameWorld);
 
-	m_player = Player::create(m_physEngine, Vec2(150, 200), Size(15, 25), false);
+	m_player = Player::create(m_physEngine, Vec2(150, 200), false);
 	if (!m_player)
 		return false;
 	addChild(m_player);
@@ -67,7 +67,7 @@ void HelloWorld::update(float dt)
 	Layer::update(dt);
 	m_physEngine->tick(dt);
 
-	const float MOVE_STEP = 0.08f;
+	const float MOVE_STEP = 0.4f;
 	if (m_inputManager->IsLeft())
 	{
 		m_player->Move(-MOVE_STEP * dt);
