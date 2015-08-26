@@ -5,6 +5,7 @@
 
 class PhysicsEngine;
 class NodePhysicsPuppeteer;
+class AnimationKit;
 
 class Player : public cocos2d::SpriteBatchNode
 {
@@ -24,5 +25,6 @@ private:
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
 	cocos2d::Sprite *m_sprite;
+	ObjectKeeper<AnimationKit> m_idleKit;
 	bool m_facingLeft;
 };

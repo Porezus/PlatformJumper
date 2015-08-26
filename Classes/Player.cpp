@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "PhysicsEngine.h"
 #include "NodePhysicsPuppeteer.h"
+#include "AnimationKit.h"
 
 USING_NS_CC;
 
@@ -34,6 +35,25 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 		return false;
 	m_sprite->setAnchorPoint(Vec2(0.5f, 0.45f));
 	addChild(m_sprite);
+
+	m_idleKit = AnimationKit::create(0.2f);
+	if (!m_idleKit.Keeps())
+		return false;
+
+	for (int frameNum = 0; frameNum < 3; ++frameNum)
+	{
+		SpriteFrame *frame = SpriteFrame::createWithTexture(getTexture(),
+			Rect(Vec2(frameNum * idleSize.width, 0), idleSize));
+		if (!frame)
+			return false;
+		m_idleKit->GetAnimation()->addSpriteFrame(frame);
+	}
+
+	if (!m_idleKit->InitAction())
+		return false;
+
+	m_sprite->runAction(m_idleKit->GetAction());
+	m_sprite->setAnchorPoint(Vec2(0.5f, 0.45f));
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
