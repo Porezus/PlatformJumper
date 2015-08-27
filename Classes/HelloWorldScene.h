@@ -29,6 +29,7 @@ private:
 	cocos2d::Vec2 GetPositionInCamera(cocos2d::Vec2 const& scenePos) const;
 	float BindCameraPositionXWithinMap(float x) const;
 	float BindCameraPositionYWithinMap(float y) const;
+	void ChangeMap(std::string const& mapName);
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;

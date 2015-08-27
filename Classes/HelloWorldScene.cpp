@@ -191,3 +191,14 @@ float HelloWorld::BindCameraPositionYWithinMap(float y) const
 
 	return y;
 }
+
+void HelloWorld::ChangeMap(std::string const& mapName)
+{
+	auto scene = HelloWorld::createScene(mapName);
+	if (!scene)
+	{
+		MessageBox("Can't create scene", "Fatal error");
+		Director::getInstance()->end();
+	}
+	Director::getInstance()->replaceScene(scene);
+}
