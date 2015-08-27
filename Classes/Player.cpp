@@ -53,6 +53,7 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 
 	if (!m_idleKit->InitAction())
 		return false;
+	m_idleKit->m_anchor = Vec2(0.5f, 0.45f);
 
 	m_runKit = AnimationKit::create(0.2f);
 	if (!m_runKit)
@@ -69,8 +70,9 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 
 	if (!m_runKit->InitAction())
 		return false;
+	m_runKit->m_anchor = Vec2(0.3f, 0.3f);
 
-	SetAnimation(m_idleKit, Vec2(0.5f, 0.45f));
+	SetAnimation(m_idleKit);
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -156,9 +158,9 @@ bool Player::IsFacingLeft() const
 	return m_facingLeft;
 }
 
-void Player::SetAnimation(AnimationKit *kit, Vec2 const& anchor)
+void Player::SetAnimation(AnimationKit *kit)
 {
 	m_sprite->stopAllActions();
 	m_sprite->runAction(kit->GetAction());
-	m_sprite->setAnchorPoint(anchor);
+	m_sprite->setAnchorPoint(kit->m_anchor);
 }

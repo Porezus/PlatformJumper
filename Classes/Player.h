@@ -22,7 +22,7 @@ public:
 
 private:
 	void SetFacing(bool facingLeft);
-	void SetAnimation(AnimationKit *kit, cocos2d::Vec2 const& anchor = cocos2d::Vec2(0.5f, 0.5f));
+	void SetAnimation(AnimationKit *kit);
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
