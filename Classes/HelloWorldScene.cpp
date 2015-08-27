@@ -87,30 +87,30 @@ void HelloWorld::update(float dt)
 	}
 
 	const float DEAD_ZONE_WIDTH = m_cameraSize.width * 0.25f;
-	if (GetPositionInCamera(m_player).x < DEAD_ZONE_WIDTH)
+	if (GetPositionInCamera(m_player->GetSpritePosition()).x < DEAD_ZONE_WIDTH)
 	{
 		setPositionX(BindCameraPositionXWithinMap(
-			getPositionX() + (DEAD_ZONE_WIDTH - GetPositionInCamera(m_player).x)
+			getPositionX() + (DEAD_ZONE_WIDTH - GetPositionInCamera(m_player->GetSpritePosition()).x)
 		));
 	}
-	if (GetPositionInCamera(m_player).x > m_cameraSize.width - DEAD_ZONE_WIDTH)
+	if (GetPositionInCamera(m_player->GetSpritePosition()).x > m_cameraSize.width - DEAD_ZONE_WIDTH)
 	{
 		setPositionX(BindCameraPositionXWithinMap(
-			getPositionX() - (GetPositionInCamera(m_player).x - (m_cameraSize.width - DEAD_ZONE_WIDTH))
+			getPositionX() - (GetPositionInCamera(m_player->GetSpritePosition()).x - (m_cameraSize.width - DEAD_ZONE_WIDTH))
 		));
 	}
 
 	const float KEEP_VISIBLE_GAP = m_cameraSize.width * 0.7f;
-	if (!m_player->IsFacingLeft() && m_cameraSize.width - GetPositionInCamera(m_player).x < KEEP_VISIBLE_GAP)
+	if (!m_player->IsFacingLeft() && m_cameraSize.width - GetPositionInCamera(m_player->GetSpritePosition()).x < KEEP_VISIBLE_GAP)
 	{
 		m_targetPosX = BindCameraPositionXWithinMap(
-			getPosition().x - (KEEP_VISIBLE_GAP - (m_cameraSize.width - GetPositionInCamera(m_player).x))
+			getPosition().x - (KEEP_VISIBLE_GAP - (m_cameraSize.width - GetPositionInCamera(m_player->GetSpritePosition()).x))
 		);
 	}
-	if (m_player->IsFacingLeft() && GetPositionInCamera(m_player).x < KEEP_VISIBLE_GAP)
+	if (m_player->IsFacingLeft() && GetPositionInCamera(m_player->GetSpritePosition()).x < KEEP_VISIBLE_GAP)
 	{
 		m_targetPosX = BindCameraPositionXWithinMap(
-			getPosition().x + (KEEP_VISIBLE_GAP - GetPositionInCamera(m_player).x)
+			getPosition().x + (KEEP_VISIBLE_GAP - GetPositionInCamera(m_player->GetSpritePosition()).x)
 		);
 	}
 
@@ -125,17 +125,17 @@ void HelloWorld::update(float dt)
 	}
 
 	const float UPPER_DEAD_ZONE_HEIGHT = 0.1f * m_cameraSize.height;
-	if (m_cameraSize.height - GetPositionInCamera(m_player).y < UPPER_DEAD_ZONE_HEIGHT)
+	if (m_cameraSize.height - GetPositionInCamera(m_player->GetSpritePosition()).y < UPPER_DEAD_ZONE_HEIGHT)
 	{
 		setPositionY(BindCameraPositionYWithinMap(
-			getPositionY() - (UPPER_DEAD_ZONE_HEIGHT - (m_cameraSize.height - GetPositionInCamera(m_player).y))
+			getPositionY() - (UPPER_DEAD_ZONE_HEIGHT - (m_cameraSize.height - GetPositionInCamera(m_player->GetSpritePosition()).y))
 		));
 	}
 	const float LOWER_DEAD_ZONE_HEIGHT = 0.3f * m_cameraSize.height;
-	if (GetPositionInCamera(m_player).y < LOWER_DEAD_ZONE_HEIGHT)
+	if (GetPositionInCamera(m_player->GetSpritePosition()).y < LOWER_DEAD_ZONE_HEIGHT)
 	{
 		setPositionY(BindCameraPositionYWithinMap(
-			getPositionY() + (LOWER_DEAD_ZONE_HEIGHT - GetPositionInCamera(m_player).y)
+			getPositionY() + (LOWER_DEAD_ZONE_HEIGHT - GetPositionInCamera(m_player->GetSpritePosition()).y)
 		));
 	}
 }
@@ -152,9 +152,9 @@ void HelloWorld::onExit()
 	Layer::onExit();
 }
 
-Vec2 HelloWorld::GetPositionInCamera(Node *node) const
+Vec2 HelloWorld::GetPositionInCamera(Vec2 const& scenePos) const
 {
-	return node->getPosition() + getPosition();
+	return scenePos + getPosition();
 }
 
 float HelloWorld::BindCameraPositionXWithinMap(float x) const

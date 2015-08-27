@@ -19,6 +19,7 @@ public:
 	void Stop();
 	void Jump();
 	bool IsFacingLeft() const;
+	cocos2d::Vec2 GetSpritePosition() const;
 
 private:
 	void SetFacing(bool facingLeft);

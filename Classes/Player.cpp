@@ -158,6 +158,11 @@ bool Player::IsFacingLeft() const
 	return m_facingLeft;
 }
 
+Vec2 Player::GetSpritePosition() const
+{
+	return m_sprite->getPosition();
+}
+
 void Player::SetAnimation(AnimationKit *kit)
 {
 	m_sprite->stopAllActions();

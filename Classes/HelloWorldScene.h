@@ -28,7 +28,7 @@ public:
 	virtual void onExit() override;
 
 private:
-	cocos2d::Vec2 GetPositionInCamera(cocos2d::Node *node) const;
+	cocos2d::Vec2 GetPositionInCamera(cocos2d::Vec2 const& scenePos) const;
 	float BindCameraPositionXWithinMap(float x) const;
 	float BindCameraPositionYWithinMap(float y) const;
 
