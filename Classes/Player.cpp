@@ -21,6 +21,7 @@ Player* Player::create(PhysicsEngine *physEngine, Vec2 const& origin, bool facin
 
 Player::Player(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
+	, m_running(false)
 {}
 
 bool Player::init(Vec2 const& origin, bool facingLeft)
@@ -112,6 +113,12 @@ void Player::Move(float dx)
 	if (dx < 0)
 	{
 		SetFacing(true);
+	}
+
+	if (!m_running)
+	{
+		m_running = true;
+		SetAnimation(m_runKit);
 	}
 }
 
