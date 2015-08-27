@@ -6,7 +6,7 @@
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene()
+Scene* HelloWorld::createScene(std::string const& mapName)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -14,7 +14,7 @@ Scene* HelloWorld::createScene()
 		return nullptr;
 	
 	// 'layer' is an autorelease object
-	auto layer = HelloWorld::create("map");
+	auto layer = HelloWorld::create(mapName);
 	if (!layer)
 		return nullptr;
 

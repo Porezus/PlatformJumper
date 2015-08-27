@@ -13,7 +13,7 @@ class HelloWorld : public cocos2d::Layer
 {
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
-	static cocos2d::Scene* createScene();
+	static cocos2d::Scene* createScene(std::string const& mapName);
 
 	static HelloWorld* create(std::string const& mapName);
 	HelloWorld();
