@@ -26,6 +26,8 @@ private:
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
 	cocos2d::Sprite *m_sprite;
-	ObjectKeeper<AnimationKit> m_idleKit;
 	bool m_facingLeft;
+
+	ObjectKeeper<AnimationKit> m_idleKit;
+	ObjectKeeper<AnimationKit> m_runKit;
 };

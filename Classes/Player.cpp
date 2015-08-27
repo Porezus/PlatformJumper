@@ -29,6 +29,7 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 		return false;
 
 	const Size idleSize(45, 63);
+	const Size runSize(75, 90);
 
 	m_sprite = Sprite::createWithTexture(getTexture(), Rect(Vec2(), idleSize));
 	if (!m_sprite)
@@ -50,6 +51,22 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 	}
 
 	if (!m_idleKit->InitAction())
+		return false;
+
+	m_runKit = AnimationKit::create(0.2f);
+	if (!m_runKit)
+		return false;
+
+	for (int frameNum = 0; frameNum < 4; ++frameNum)
+	{
+		SpriteFrame *frame = SpriteFrame::createWithTexture(getTexture(),
+			Rect(Vec2(frameNum * runSize.width, idleSize.height), runSize));
+		if (!frame)
+			return false;
+		m_runKit->GetAnimation()->addSpriteFrame(frame);
+	}
+
+	if (!m_runKit->InitAction())
 		return false;
 
 	SetAnimation(m_idleKit, Vec2(0.5f, 0.45f));
