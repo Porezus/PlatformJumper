@@ -15,14 +15,12 @@ public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
 	static cocos2d::Scene* createScene();
 
+	static HelloWorld* create(std::string const& mapName);
 	HelloWorld();
 
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-	virtual bool init();
+	virtual bool init(std::string const& mapName);
 	
-	// implement the "static create()" method manually
-	CREATE_FUNC(HelloWorld);
-
 	virtual void update(float dt) override;
 	virtual void onEnter() override;
 	virtual void onExit() override;

@@ -14,7 +14,7 @@ Scene* HelloWorld::createScene()
 		return nullptr;
 	
 	// 'layer' is an autorelease object
-	auto layer = HelloWorld::create();
+	auto layer = HelloWorld::create("map");
 	if (!layer)
 		return nullptr;
 
@@ -25,13 +25,27 @@ Scene* HelloWorld::createScene()
 	return scene;
 }
 
+HelloWorld* HelloWorld::create(std::string const& mapName)
+{
+	HelloWorld *pRet = new (std::nothrow) HelloWorld();
+	if (pRet && pRet->init(mapName))
+	{
+		pRet->autorelease();
+	}
+	else
+	{
+		CC_SAFE_DELETE(pRet);
+	}
+	return pRet;
+}
+
 HelloWorld::HelloWorld()
 	: m_cameraSize(480, 320)
 	, m_targetPosX(0)
 {}
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool HelloWorld::init(std::string const& mapName)
 {
 	if (!Layer::init())
 		return false;
@@ -43,7 +57,7 @@ bool HelloWorld::init()
 	if (!m_physEngine.Keeps())
 		return false;
 
-	m_gameWorld = GameWorld::create(m_physEngine, "map");
+	m_gameWorld = GameWorld::create(m_physEngine, mapName);
 	if (!m_gameWorld)
 		return false;
 	addChild(m_gameWorld);
