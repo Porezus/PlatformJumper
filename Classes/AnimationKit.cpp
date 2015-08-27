@@ -26,6 +26,10 @@ bool AnimationKit::init(float delay)
 	return true;
 }
 
+AnimationKit::AnimationKit()
+	: m_anchor(0.5f, 0.5f)
+{}
+
 bool AnimationKit::InitAction(bool repeat)
 {
 	CCASSERT(!m_action.Keeps(), "Action is already initialized");
@@ -40,6 +44,8 @@ bool AnimationKit::InitAction(bool repeat)
 		if (!m_action.Keeps())
 			return false;
 	}
+
+	return true;
 }
 
 Animation* AnimationKit::GetAnimation() const
