@@ -37,7 +37,12 @@ string RawData::ReadString(istream &in)
 	return string(result.data());
 }
 
-float RawData::ReadFloat(std::istream &in)
+float RawData::ReadFloat(istream &in)
 {
 	return stof(ReadStrUntilStopChar(in));
+}
+
+cocos2d::Vec2 RawData::ReadVec2(istream &in)
+{
+	return cocos2d::Vec2(ReadFloat(in), ReadFloat(in));
 }
