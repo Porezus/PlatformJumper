@@ -51,7 +51,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	// create a scene. it's an autorelease object
 	auto scene = HelloWorld::createScene("map");
 	if (!scene)
-		CCASSERT(false, "Can't create scene");
+	{
+		MessageBox("Can't create scene", "Fatal error");
+		return false;
+	}
 
 	// run
 	director->runWithScene(scene);
