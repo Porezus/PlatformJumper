@@ -202,3 +202,8 @@ void HelloWorld::ChangeMap(std::string const& mapName)
 	}
 	Director::getInstance()->replaceScene(scene);
 }
+
+void HelloWorld::EndGame()
+{
+	Director::getInstance()->end();
+}

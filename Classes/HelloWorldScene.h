@@ -30,6 +30,7 @@ private:
 	float BindCameraPositionXWithinMap(float x) const;
 	float BindCameraPositionYWithinMap(float y) const;
 	void ChangeMap(std::string const& mapName);
+	void EndGame();
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;
