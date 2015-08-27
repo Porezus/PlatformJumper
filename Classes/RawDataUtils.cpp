@@ -44,5 +44,7 @@ float RawData::ReadFloat(istream &in)
 
 cocos2d::Vec2 RawData::ReadVec2(istream &in)
 {
-	return cocos2d::Vec2(ReadFloat(in), ReadFloat(in));
+	const float x = ReadFloat(in);
+	const float y = ReadFloat(in);
+	return cocos2d::Vec2(x, y);
 }
