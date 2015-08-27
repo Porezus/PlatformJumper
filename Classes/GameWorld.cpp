@@ -1,5 +1,7 @@
 #include "GameWorld.h"
 #include "PhysicsEngine.h"
+#include <fstream>
+#include "Utils.h"
 
 USING_NS_CC;
 
@@ -25,6 +27,28 @@ bool GameWorld::init(std::string const& path)
 {
 	if (!Sprite::initWithFile(path + ".png"))
 		return false;
+
+	std::ifstream obsFile(path + ".obs");
+	if (!obsFile.is_open())
+		return false;
+
+	std::string curLine;
+	while (std::getline(obsFile, curLine))
+	{
+		auto parts = SplitString(curLine, " ");
+		if (parts.size() != 4)
+			return false;
+
+		try
+		{
+			AddRectBlock(Rect(std::stoi(parts[0]), std::stoi(parts[1]),
+				std::stoi(parts[2]), std::stoi(parts[3])));
+		}
+		catch (std::exception const&)
+		{
+			return false;
+		}
+	}
 
 	setAnchorPoint(Vec2());
 	return true;

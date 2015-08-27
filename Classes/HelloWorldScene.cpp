@@ -46,7 +46,6 @@ bool HelloWorld::init()
 	m_gameWorld = GameWorld::create(m_physEngine, "map");
 	if (!m_gameWorld)
 		return false;
-	m_gameWorld->AddRectBlock(Rect(62, 640 - 589, 200, 588 - 556));
 	addChild(m_gameWorld);
 
 	m_player = Player::create(m_physEngine, Vec2(150, 200), false);

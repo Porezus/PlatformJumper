@@ -13,8 +13,7 @@ public:
 	GameWorld(PhysicsEngine *physEngine);
 	bool init(std::string const& path);
 
-	void AddRectBlock(cocos2d::Rect const& rect);
-
 private:
+	void AddRectBlock(cocos2d::Rect const& rect);
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 };
