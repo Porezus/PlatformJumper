@@ -16,6 +16,7 @@ public:
 	bool init(cocos2d::Vec2 const& origin, bool facingLeft);
 
 	void Move(float dx);
+	void Stop();
 	void Jump();
 	bool IsFacingLeft() const;
 

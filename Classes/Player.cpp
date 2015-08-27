@@ -122,6 +122,15 @@ void Player::Move(float dx)
 	}
 }
 
+void Player::Stop()
+{
+	if (m_running)
+	{
+		m_running = false;
+		SetAnimation(m_idleKit);
+	}
+}
+
 void Player::Jump()
 {
 	auto body = m_puppeteer->getBody();

@@ -72,10 +72,15 @@ void HelloWorld::update(float dt)
 	{
 		m_player->Move(-MOVE_STEP * dt);
 	}
-	if (m_inputManager->IsRight())
+	else if (m_inputManager->IsRight())
 	{
 		m_player->Move(MOVE_STEP * dt);
 	}
+	else
+	{
+		m_player->Stop();
+	}
+
 	if (m_inputManager->IsJump())
 	{
 		m_player->Jump();
