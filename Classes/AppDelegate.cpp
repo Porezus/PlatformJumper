@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include <fstream>
 
 USING_NS_CC;
 
@@ -48,16 +49,31 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	register_all_packages();
 
-	// create a scene. it's an autorelease object
-	auto scene = HelloWorld::createScene(Destination("map", Vec2(150, 200)));
-	if (!scene)
+	std::ifstream dstFile("start.dst");
+	if (!dstFile.is_open())
 	{
-		MessageBox("Can't create scene", "Fatal error");
+		MessageBox("Can't open dst file", "Fatal error");
 		return false;
 	}
 
-	// run
-	director->runWithScene(scene);
+	try
+	{
+		// create a scene. it's an autorelease object
+		auto scene = HelloWorld::createScene(Destination(dstFile));
+		if (!scene)
+		{
+			MessageBox("Can't create scene", "Fatal error");
+			return false;
+		}
+
+		// run
+		director->runWithScene(scene);
+	}
+	catch (std::exception const&)
+	{
+		MessageBox("Can't parse dst file", "Fatal error");
+		return false;
+	}
 
 	return true;
 }
