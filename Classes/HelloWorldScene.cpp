@@ -6,7 +6,7 @@
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene(std::string const& mapName)
+Scene* HelloWorld::createScene(Destination const& destination)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -14,7 +14,7 @@ Scene* HelloWorld::createScene(std::string const& mapName)
 		return nullptr;
 	
 	// 'layer' is an autorelease object
-	auto layer = HelloWorld::create(mapName);
+	auto layer = HelloWorld::create(destination);
 	if (!layer)
 		return nullptr;
 
@@ -25,10 +25,10 @@ Scene* HelloWorld::createScene(std::string const& mapName)
 	return scene;
 }
 
-HelloWorld* HelloWorld::create(std::string const& mapName)
+HelloWorld* HelloWorld::create(Destination const& destination)
 {
 	HelloWorld *pRet = new (std::nothrow) HelloWorld();
-	if (pRet && pRet->init(mapName))
+	if (pRet && pRet->init(destination))
 	{
 		pRet->autorelease();
 	}
@@ -45,7 +45,7 @@ HelloWorld::HelloWorld()
 {}
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init(std::string const& mapName)
+bool HelloWorld::init(Destination const& destination)
 {
 	if (!Layer::init())
 		return false;
@@ -57,12 +57,12 @@ bool HelloWorld::init(std::string const& mapName)
 	if (!m_physEngine.Keeps())
 		return false;
 
-	m_gameWorld = GameWorld::create(m_physEngine, mapName);
+	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName);
 	if (!m_gameWorld)
 		return false;
 	addChild(m_gameWorld);
 
-	m_player = Player::create(m_physEngine, Vec2(150, 200), false);
+	m_player = Player::create(m_physEngine, destination.position, false);
 	if (!m_player)
 		return false;
 	addChild(m_player);
@@ -192,9 +192,9 @@ float HelloWorld::BindCameraPositionYWithinMap(float y) const
 	return y;
 }
 
-void HelloWorld::ChangeMap(std::string const& mapName)
+void HelloWorld::ChangeMap(Destination const& destination)
 {
-	auto scene = HelloWorld::createScene(mapName);
+	auto scene = HelloWorld::createScene(destination);
 	if (!scene)
 	{
 		MessageBox("Can't create scene", "Fatal error");

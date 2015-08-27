@@ -49,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	register_all_packages();
 
 	// create a scene. it's an autorelease object
-	auto scene = HelloWorld::createScene("map");
+	auto scene = HelloWorld::createScene({ "map", Vec2(150, 200) });
 	if (!scene)
 	{
 		MessageBox("Can't create scene", "Fatal error");
