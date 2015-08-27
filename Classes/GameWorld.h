@@ -8,10 +8,10 @@ class PhysicsEngine;
 class GameWorld : public cocos2d::Sprite
 {
 public:
-	static GameWorld* create(PhysicsEngine *physEngine);
+	static GameWorld* create(PhysicsEngine *physEngine, std::string const& path);
 
 	GameWorld(PhysicsEngine *physEngine);
-	bool init();
+	bool init(std::string const& path);
 
 	void AddRectBlock(cocos2d::Rect const& rect);
 

@@ -3,10 +3,10 @@
 
 USING_NS_CC;
 
-GameWorld* GameWorld::create(PhysicsEngine *physEngine)
+GameWorld* GameWorld::create(PhysicsEngine *physEngine, std::string const& path)
 {
 	GameWorld *pRet = new (std::nothrow) GameWorld(physEngine);
-	if (pRet && pRet->init())
+	if (pRet && pRet->init(path))
 	{
 		pRet->autorelease();
 	}
@@ -21,9 +21,9 @@ GameWorld::GameWorld(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool GameWorld::init()
+bool GameWorld::init(std::string const& path)
 {
-	if (!Sprite::initWithFile("map.png"))
+	if (!Sprite::initWithFile(path + ".png"))
 		return false;
 
 	setAnchorPoint(Vec2());
