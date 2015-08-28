@@ -36,7 +36,9 @@ bool Bonuses::init(std::istream &in)
 			const Rect imageRect(RawData::ReadRect(in));
 			const Vec2 origin(RawData::ReadVec2(in));
 			const int value(RawData::ReadInt(in));
-			AddBonus(imageRect, origin, value);
+
+			if (!AddBonus(imageRect, origin, value))
+				return false;
 		}
 	}
 	catch (std::exception const&)

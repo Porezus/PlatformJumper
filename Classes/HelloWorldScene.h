@@ -31,6 +31,7 @@ private:
 	cocos2d::Vec2 GetPositionInCamera(cocos2d::Vec2 const& scenePos) const;
 	float BindCameraPositionXWithinMap(float x) const;
 	float BindCameraPositionYWithinMap(float y) const;
+
 	void ChangeMap(Destination const& destination);
 	void EndGame();
 
@@ -38,7 +39,6 @@ private:
 	Player *m_player;
 	InputManager *m_inputManager;
 	GameWorld *m_gameWorld;
-	Bonuses *m_bonuses;
 
 	cocos2d::Size m_cameraSize;
 	float m_targetPosX;

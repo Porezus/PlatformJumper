@@ -63,7 +63,7 @@ bool HelloWorld::init(Destination const& destination)
 	if (!dataFile.is_open())
 		return false;
 
-	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName, dataFile);
+	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName + ".png", dataFile);
 	if (!m_gameWorld)
 		return false;
 	addChild(m_gameWorld);
@@ -73,10 +73,10 @@ bool HelloWorld::init(Destination const& destination)
 		return false;
 	addChild(m_player);
 
-	m_bonuses = Bonuses::create(m_physEngine, dataFile);
-	if (!m_bonuses)
+	auto bonuses = Bonuses::create(m_physEngine, dataFile);
+	if (!bonuses)
 		return false;
-	addChild(m_bonuses);
+	addChild(bonuses);
 
 	m_inputManager = InputManager::create();
 	if (!m_inputManager)

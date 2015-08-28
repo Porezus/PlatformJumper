@@ -9,7 +9,6 @@ PhysicsPuppeteer::PhysicsPuppeteer()
 PhysicsPuppeteer::~PhysicsPuppeteer()
 {
 	m_engine->deleteBodyLater(m_body);
-	m_engine->release();
 }
 
 bool PhysicsPuppeteer::init(const b2BodyDef &bodyDef, PhysicsEngine *engine)
@@ -18,7 +17,6 @@ bool PhysicsPuppeteer::init(const b2BodyDef &bodyDef, PhysicsEngine *engine)
 		return false;
 
 	m_engine = engine;
-	m_engine->retain();
 
 	b2BodyDef fixedDef = bodyDef;
 	fixedDef.userData = reinterpret_cast<void *>(this);

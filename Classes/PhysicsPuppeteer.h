@@ -2,6 +2,7 @@
 
 #include "cocos2d.h"
 #include "Box2D\Box2D.h"
+#include "ObjectKeeper.h"
 
 class PhysicsPuppeteer;
 class PhysicsEngine;
@@ -37,5 +38,5 @@ public:
 
 private:
 	b2Body *m_body;
-	PhysicsEngine *m_engine;
+	ObjectKeeper<PhysicsEngine> m_engine;
 };

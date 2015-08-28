@@ -1,14 +1,13 @@
 #include "GameWorld.h"
 #include "PhysicsEngine.h"
-#include <fstream>
 #include "RawDataUtils.h"
 
 USING_NS_CC;
 
-GameWorld* GameWorld::create(PhysicsEngine *physEngine, std::string const& path, std::istream &in)
+GameWorld* GameWorld::create(PhysicsEngine *physEngine, std::string const& img, std::istream &in)
 {
 	GameWorld *pRet = new (std::nothrow) GameWorld(physEngine);
-	if (pRet && pRet->init(path, in))
+	if (pRet && pRet->init(img, in))
 	{
 		pRet->autorelease();
 	}
@@ -23,9 +22,9 @@ GameWorld::GameWorld(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool GameWorld::init(std::string const& path, std::istream &in)
+bool GameWorld::init(std::string const& img, std::istream &in)
 {
-	if (!Sprite::initWithFile(path + ".png"))
+	if (!Sprite::initWithFile(img))
 		return false;
 
 	try

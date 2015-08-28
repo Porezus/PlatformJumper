@@ -11,7 +11,6 @@ class Player : public cocos2d::SpriteBatchNode
 {
 public:
 	static Player* create(PhysicsEngine *physEngine, cocos2d::Vec2 const& origin, bool facingLeft);
-	
 	Player(PhysicsEngine *physEngine);
 	bool init(cocos2d::Vec2 const& origin, bool facingLeft);
 
