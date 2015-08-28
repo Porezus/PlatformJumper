@@ -10,4 +10,6 @@ namespace RawData
 	std::string ReadString(std::istream &in);
 	float ReadFloat(std::istream &in);
 	cocos2d::Vec2 ReadVec2(std::istream &in);
+	cocos2d::Size ReadSize(std::istream &in);
+	cocos2d::Rect ReadRect(std::istream &in);
 }

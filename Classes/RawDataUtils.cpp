@@ -48,3 +48,17 @@ cocos2d::Vec2 RawData::ReadVec2(istream &in)
 	const float y = ReadFloat(in);
 	return cocos2d::Vec2(x, y);
 }
+
+cocos2d::Size RawData::ReadSize(istream &in)
+{
+	const float w = ReadFloat(in);
+	const float h = ReadFloat(in);
+	return cocos2d::Size(w, h);
+}
+
+cocos2d::Rect RawData::ReadRect(istream &in)
+{
+	const cocos2d::Vec2 vec2 = ReadVec2(in);
+	const cocos2d::Size size = ReadSize(in);
+	return cocos2d::Rect(vec2, size);
+}

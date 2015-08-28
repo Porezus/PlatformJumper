@@ -1,7 +1,7 @@
 #include "GameWorld.h"
 #include "PhysicsEngine.h"
 #include <fstream>
-#include "Utils.h"
+#include "RawDataUtils.h"
 
 USING_NS_CC;
 
@@ -32,22 +32,17 @@ bool GameWorld::init(std::string const& path)
 	if (!obsFile.is_open())
 		return false;
 
-	std::string curLine;
-	while (std::getline(obsFile, curLine))
+	try
 	{
-		auto parts = SplitString(curLine, " ");
-		if (parts.size() != 4)
-			return false;
-
-		try
+		const size_t blockCnt = RawData::ReadSizeUntilStopChar(obsFile);
+		for (size_t i = 0; i < blockCnt; ++i)
 		{
-			AddRectBlock(Rect(std::stoi(parts[0]), std::stoi(parts[1]),
-				std::stoi(parts[2]), std::stoi(parts[3])));
+			AddRectBlock(RawData::ReadRect(obsFile));
 		}
-		catch (std::exception const&)
-		{
-			return false;
-		}
+	}
+	catch (std::exception const&)
+	{
+		return false;
 	}
 
 	setAnchorPoint(Vec2());
