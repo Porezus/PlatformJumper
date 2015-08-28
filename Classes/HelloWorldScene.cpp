@@ -73,7 +73,7 @@ bool HelloWorld::init(Destination const& destination)
 		return false;
 	addChild(m_player);
 
-	auto bonuses = Bonuses::create(m_physEngine, dataFile);
+	auto bonuses = Bonuses::create(m_physEngine, dataFile, m_gameWorld->getContentSize().height);
 	if (!bonuses)
 		return false;
 	addChild(bonuses);
