@@ -10,14 +10,14 @@ public:
 		SafeRetain();
 	};
 
-	bool Keeps() const
+	operator bool() const
 	{
 		return (m_ptr != nullptr);
 	};
 
 	void Free()
 	{
-		if (Keeps())
+		if (*this)
 		{
 			m_ptr->release();
 			m_ptr = nullptr;

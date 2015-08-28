@@ -39,7 +39,7 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 	addChild(m_sprite);
 
 	m_idleKit = AnimationKit::create(0.2f);
-	if (!m_idleKit.Keeps())
+	if (!m_idleKit)
 		return false;
 
 	for (int frameNum = 0; frameNum < 3; ++frameNum)
@@ -83,7 +83,7 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 		CCASSERT(false, "Can't create body");
 
 	m_puppeteer = NodePhysicsPuppeteer::create(m_sprite, bodyDef, m_physEngine);
-	if (!m_puppeteer.Keeps())
+	if (!m_puppeteer)
 		return false;
 
 	b2PolygonShape shape;

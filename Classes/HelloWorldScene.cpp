@@ -56,7 +56,7 @@ bool HelloWorld::init(Destination const& destination)
 	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	m_physEngine = PhysicsEngine::create(this, 200);
-	if (!m_physEngine.Keeps())
+	if (!m_physEngine)
 		return false;
 
 	std::ifstream dataFile(destination.mapName + ".dat");

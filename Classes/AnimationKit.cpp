@@ -32,16 +32,16 @@ AnimationKit::AnimationKit()
 
 bool AnimationKit::InitAction(bool repeat)
 {
-	CCASSERT(!m_action.Keeps(), "Action is already initialized");
+	CCASSERT(!m_action, "Action is already initialized");
 
 	m_action = Animate::create(m_animation);
-	if (!m_action.Keeps())
+	if (!m_action)
 		return false;
 
 	if (repeat)
 	{
 		m_action = RepeatForever::create(m_action);
-		if (!m_action.Keeps())
+		if (!m_action)
 			return false;
 	}
 
@@ -55,6 +55,6 @@ Animation* AnimationKit::GetAnimation() const
 
 ActionInterval* AnimationKit::GetAction() const
 {
-	CCASSERT(m_action.Keeps(), "Action is not initialized");
+	CCASSERT(m_action, "Action is not initialized");
 	return m_action;
 }
