@@ -5,10 +5,10 @@
 
 USING_NS_CC;
 
-GameWorld* GameWorld::create(PhysicsEngine *physEngine, std::string const& path)
+GameWorld* GameWorld::create(PhysicsEngine *physEngine, std::string const& path, std::istream &in)
 {
 	GameWorld *pRet = new (std::nothrow) GameWorld(physEngine);
-	if (pRet && pRet->init(path))
+	if (pRet && pRet->init(path, in))
 	{
 		pRet->autorelease();
 	}
@@ -23,21 +23,17 @@ GameWorld::GameWorld(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool GameWorld::init(std::string const& path)
+bool GameWorld::init(std::string const& path, std::istream &in)
 {
 	if (!Sprite::initWithFile(path + ".png"))
 		return false;
 
-	std::ifstream obsFile(path + ".obs");
-	if (!obsFile.is_open())
-		return false;
-
 	try
 	{
-		const size_t blockCnt = RawData::ReadSizeT(obsFile);
+		const size_t blockCnt = RawData::ReadSizeT(in);
 		for (size_t i = 0; i < blockCnt; ++i)
 		{
-			AddRectBlock(RawData::ReadRect(obsFile));
+			AddRectBlock(RawData::ReadRect(in));
 		}
 	}
 	catch (std::exception const&)

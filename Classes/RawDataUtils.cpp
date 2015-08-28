@@ -49,6 +49,11 @@ float RawData::ReadFloat(istream &in)
 	return stof(ReadString(in));
 }
 
+int RawData::ReadInt(istream &in)
+{
+	return stoi(ReadString(in));
+}
+
 cocos2d::Vec2 RawData::ReadVec2(istream &in)
 {
 	const float x = ReadFloat(in);

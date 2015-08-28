@@ -1,13 +1,14 @@
 #include "Bonuses.h"
 #include "Bonus.h"
 #include "PhysicsEngine.h"
+#include "RawDataUtils.h"
 
 USING_NS_CC;
 
-Bonuses* Bonuses::create(PhysicsEngine *physEngine)
+Bonuses* Bonuses::create(PhysicsEngine *physEngine, std::istream &in)
 {
 	Bonuses *pRet = new (std::nothrow) Bonuses(physEngine);
-	if (pRet && pRet->init())
+	if (pRet && pRet->init(in))
 	{
 		pRet->autorelease();
 	}
@@ -22,12 +23,26 @@ Bonuses::Bonuses(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool Bonuses::init()
+bool Bonuses::init(std::istream &in)
 {
 	if (!SpriteBatchNode::initWithFile("bonus_atlas.png"))
 		return false;
 
-	AddBonus(Rect(Vec2(), Size(32, 32)), Vec2(200, 150), 1);
+	try
+	{
+		const size_t bonusCnt = RawData::ReadSizeT(in);
+		for (size_t i = 0; i < bonusCnt; ++i)
+		{
+			const Rect imageRect(RawData::ReadRect(in));
+			const Vec2 origin(RawData::ReadVec2(in));
+			const int value(RawData::ReadInt(in));
+			AddBonus(imageRect, origin, value);
+		}
+	}
+	catch (std::exception const&)
+	{
+		return false;
+	}
 
 	return true;
 }

@@ -8,9 +8,9 @@ class PhysicsEngine;
 class Bonuses : public cocos2d::SpriteBatchNode
 {
 public:
-	static Bonuses* create(PhysicsEngine *physEngine);
+	static Bonuses* create(PhysicsEngine *physEngine, std::istream &in);
 	Bonuses(PhysicsEngine *physEngine);
-	bool init();
+	bool init(std::istream &in);
 
 private:
 	bool AddBonus(cocos2d::Rect const& imageRect, cocos2d::Vec2 const& origin, int value);

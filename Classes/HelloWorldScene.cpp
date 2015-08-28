@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "InputManager.h"
 #include "Bonuses.h"
+#include <fstream>
 
 USING_NS_CC;
 
@@ -58,7 +59,11 @@ bool HelloWorld::init(Destination const& destination)
 	if (!m_physEngine.Keeps())
 		return false;
 
-	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName);
+	std::ifstream dataFile(destination.mapName + ".dat");
+	if (!dataFile.is_open())
+		return false;
+
+	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName, dataFile);
 	if (!m_gameWorld)
 		return false;
 	addChild(m_gameWorld);
@@ -68,7 +73,7 @@ bool HelloWorld::init(Destination const& destination)
 		return false;
 	addChild(m_player);
 
-	m_bonuses = Bonuses::create(m_physEngine);
+	m_bonuses = Bonuses::create(m_physEngine, dataFile);
 	if (!m_bonuses)
 		return false;
 	addChild(m_bonuses);
