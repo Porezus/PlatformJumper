@@ -9,6 +9,7 @@ class PhysicsEngine;
 class Player;
 class InputManager;
 class GameWorld;
+class Bonuses;
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -37,6 +38,7 @@ private:
 	Player *m_player;
 	InputManager *m_inputManager;
 	GameWorld *m_gameWorld;
+	Bonuses *m_bonuses;
 
 	cocos2d::Size m_cameraSize;
 	float m_targetPosX;

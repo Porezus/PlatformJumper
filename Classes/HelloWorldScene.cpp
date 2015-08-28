@@ -3,6 +3,7 @@
 #include "GameWorld.h"
 #include "Player.h"
 #include "InputManager.h"
+#include "Bonuses.h"
 
 USING_NS_CC;
 
@@ -66,6 +67,11 @@ bool HelloWorld::init(Destination const& destination)
 	if (!m_player)
 		return false;
 	addChild(m_player);
+
+	m_bonuses = Bonuses::create(m_physEngine);
+	if (!m_bonuses)
+		return false;
+	addChild(m_bonuses);
 
 	m_inputManager = InputManager::create();
 	if (!m_inputManager)
