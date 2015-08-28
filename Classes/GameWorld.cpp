@@ -34,7 +34,7 @@ bool GameWorld::init(std::string const& path)
 
 	try
 	{
-		const size_t blockCnt = RawData::ReadSizeUntilStopChar(obsFile);
+		const size_t blockCnt = RawData::ReadSizeT(obsFile);
 		for (size_t i = 0; i < blockCnt; ++i)
 		{
 			AddRectBlock(RawData::ReadRect(obsFile));

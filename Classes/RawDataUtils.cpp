@@ -24,14 +24,14 @@ string ReadStrUntilStopChar(istream &in)
 	return result;
 }
 
-size_t RawData::ReadSizeUntilStopChar(istream &in)
+size_t RawData::ReadSizeT(istream &in)
 {
 	return stoul(ReadStrUntilStopChar(in));
 }
 
-string RawData::ReadString(istream &in)
+string RawData::ReadStringAdv(istream &in)
 {
-	const size_t strLen = ReadSizeUntilStopChar(in);
+	const size_t strLen = ReadSizeT(in);
 	vector<char> result(strLen + 1, '\0');
 	in.read(result.data(), strLen);
 	return string(result.data());
