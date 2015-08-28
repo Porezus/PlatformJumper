@@ -6,6 +6,7 @@
 namespace RawData
 {
 	const char STOP_CHAR = '#';
+	std::string ReadString(std::istream &in);
 	size_t ReadSizeT(std::istream &in);
 	std::string ReadStringAdv(std::istream &in);
 	float ReadFloat(std::istream &in);

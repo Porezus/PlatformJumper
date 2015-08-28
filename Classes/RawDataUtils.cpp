@@ -4,7 +4,7 @@
 
 using namespace std;
 
-string ReadStrUntilStopChar(istream &in)
+string RawData::ReadString(istream &in)
 {
 	string result;
 
@@ -26,7 +26,7 @@ string ReadStrUntilStopChar(istream &in)
 
 size_t RawData::ReadSizeT(istream &in)
 {
-	return stoul(ReadStrUntilStopChar(in));
+	return stoul(ReadString(in));
 }
 
 string RawData::ReadStringAdv(istream &in)
@@ -39,7 +39,7 @@ string RawData::ReadStringAdv(istream &in)
 
 float RawData::ReadFloat(istream &in)
 {
-	return stof(ReadStrUntilStopChar(in));
+	return stof(ReadString(in));
 }
 
 cocos2d::Vec2 RawData::ReadVec2(istream &in)

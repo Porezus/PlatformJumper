@@ -7,6 +7,6 @@ Destination::Destination(std::string const& mapName, cocos2d::Vec2 const& positi
 {}
 
 Destination::Destination(std::istream &in)
-	: mapName(RawData::ReadStringAdv(in))
+	: mapName(RawData::ReadString(in))
 	, position(RawData::ReadVec2(in))
 {}
