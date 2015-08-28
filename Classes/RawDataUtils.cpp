@@ -4,8 +4,15 @@
 
 using namespace std;
 
+void RawData::SkipWhitespaces(istream &in)
+{
+	if (in.peek() == '\n' || in.peek() == '\t')
+		in.get();
+}
+
 string RawData::ReadString(istream &in)
 {
+	SkipWhitespaces(in);
 	string result;
 
 	char tmpChar;
