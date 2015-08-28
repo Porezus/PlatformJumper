@@ -27,6 +27,8 @@ bool Bonuses::init()
 	if (!SpriteBatchNode::initWithFile("bonus_atlas.png"))
 		return false;
 
+	AddBonus(Rect(Vec2(), Size(32, 32)), Vec2(200, 150), 1);
+
 	return true;
 }
 

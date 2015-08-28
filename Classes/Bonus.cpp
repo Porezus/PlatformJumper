@@ -36,7 +36,7 @@ bool Bonus::init(Texture2D *texture, Rect const& imageRect, Vec2 const& origin, 
 	if (!m_physEngine->createBody(bodyDef))
 		CCASSERT(false, "Can't create body");
 
-	m_puppeteer = BonusPuppeteer::create(bodyDef, m_physEngine);
+	m_puppeteer = BonusPuppeteer::create(bodyDef, m_physEngine, this);
 	if (!m_puppeteer)
 		return false;
 
