@@ -37,15 +37,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
 		director->setOpenGLView(glview);
 	}
 
-	// turn on display FPS
-	director->setDisplayStats(true);
-
 	// set FPS. the default value is 1.0/60 if you don't call this
 	director->setAnimationInterval(1.0 / 60);
 
 	// Set the design resolution
-	glview->setDesignResolutionSize(480, 320, ResolutionPolicy::NO_BORDER);
-	glview->setFrameSize(480, 320);
+	cocos2d::Size windowSize(640, 480);
+	glview->setDesignResolutionSize(windowSize.width, windowSize.height, ResolutionPolicy::NO_BORDER);
+	glview->setFrameSize(windowSize.width, windowSize.height);
 
 	register_all_packages();
 

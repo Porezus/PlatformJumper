@@ -42,7 +42,7 @@ HelloWorld* HelloWorld::create(Destination const& destination)
 }
 
 HelloWorld::HelloWorld()
-	: m_cameraSize(480, 320)
+	: m_cameraSize(Director::getInstance()->getOpenGLView()->getFrameSize())
 	, m_targetPosX(0)
 {}
 
