@@ -32,7 +32,10 @@ bool GameWorld::init(std::string const& img, std::istream &in)
 		const size_t blockCnt = RawData::ReadSizeT(in);
 		for (size_t i = 0; i < blockCnt; ++i)
 		{
-			AddRectBlock(RawData::ReadRect(in));
+			const Vec2 leftUp(RawData::ReadVec2(in));
+			const Vec2 rightDown(RawData::ReadVec2(in));
+			const Size size(rightDown.x - leftUp.x, rightDown.y - leftUp.y);
+			AddRectBlock(Rect(Vec2(leftUp.x, getContentSize().height - leftUp.y - size.height), size));
 		}
 	}
 	catch (std::exception const&)

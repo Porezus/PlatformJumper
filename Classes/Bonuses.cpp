@@ -5,10 +5,10 @@
 
 USING_NS_CC;
 
-Bonuses* Bonuses::create(PhysicsEngine *physEngine, std::istream &in)
+Bonuses* Bonuses::create(PhysicsEngine *physEngine, std::istream &in, int mapHeight)
 {
 	Bonuses *pRet = new (std::nothrow) Bonuses(physEngine);
-	if (pRet && pRet->init(in))
+	if (pRet && pRet->init(in, mapHeight))
 	{
 		pRet->autorelease();
 	}
@@ -23,7 +23,7 @@ Bonuses::Bonuses(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool Bonuses::init(std::istream &in)
+bool Bonuses::init(std::istream &in, int mapHeight)
 {
 	if (!SpriteBatchNode::initWithFile("bonus_atlas.png"))
 		return false;
@@ -34,7 +34,10 @@ bool Bonuses::init(std::istream &in)
 		for (size_t i = 0; i < bonusCnt; ++i)
 		{
 			const Rect imageRect(RawData::ReadRect(in));
-			const Vec2 origin(RawData::ReadVec2(in));
+
+			Vec2 origin(RawData::ReadVec2(in));
+			origin.y = mapHeight - origin.y;
+
 			const int value(RawData::ReadInt(in));
 
 			if (!AddBonus(imageRect, origin, value))
