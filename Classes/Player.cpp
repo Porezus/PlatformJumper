@@ -94,7 +94,7 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 	fixtureDef.shape = &shape;
 	fixtureDef.density = 1.0f;
 	fixtureDef.friction = 0.2f;
-	fixtureDef.restitution = 0.0f;
+	fixtureDef.restitution = 0.1f;
 	if (!m_puppeteer->getBody()->CreateFixture(&fixtureDef))
 		CCASSERT(false, "Can't create fixture");
 
