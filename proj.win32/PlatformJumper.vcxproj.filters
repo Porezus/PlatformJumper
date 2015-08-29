@@ -66,6 +66,9 @@
     <ClCompile Include="..\Classes\Bonus\BonusPuppeteer.cpp">
       <Filter>src\Bonus</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\json11.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Bonus\BonusPuppeteer.h">
       <Filter>src\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json11.hpp">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
