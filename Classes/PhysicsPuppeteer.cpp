@@ -3,7 +3,6 @@
 
 PhysicsPuppeteer::PhysicsPuppeteer()
 	: m_body(nullptr)
-	, m_engine(nullptr)
 {}
 
 PhysicsPuppeteer::~PhysicsPuppeteer()
