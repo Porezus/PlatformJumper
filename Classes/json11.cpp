@@ -48,7 +48,7 @@ static void dump(std::nullptr_t, string &out) {
 static void dump(double value, string &out) {
     if (std::isfinite(value)) {
         char buf[32];
-        snprintf(buf, sizeof buf, "%.17g", value);
+        _snprintf(buf, sizeof buf, "%.17g", value);
         out += buf;
     } else {
         out += "null";
@@ -57,7 +57,7 @@ static void dump(double value, string &out) {
 
 static void dump(int value, string &out) {
     char buf[32];
-    snprintf(buf, sizeof buf, "%d", value);
+    _snprintf(buf, sizeof buf, "%d", value);
     out += buf;
 }
 
@@ -85,7 +85,7 @@ static void dump(const string &value, string &out) {
             out += "\\t";
         } else if (static_cast<uint8_t>(ch) <= 0x1f) {
             char buf[8];
-            snprintf(buf, sizeof buf, "\\u%04x", ch);
+            _snprintf(buf, sizeof buf, "\\u%04x", ch);
             out += buf;
         } else if (static_cast<uint8_t>(ch) == 0xe2 && static_cast<uint8_t>(value[i+1]) == 0x80
                    && static_cast<uint8_t>(value[i+2]) == 0xa8) {
@@ -241,8 +241,8 @@ const Json & static_null() {
  * Constructors
  */
 
-Json::Json() noexcept                  : m_ptr(statics().null) {}
-Json::Json(std::nullptr_t) noexcept    : m_ptr(statics().null) {}
+Json::Json()                           : m_ptr(statics().null) {}
+Json::Json(std::nullptr_t)             : m_ptr(statics().null) {}
 Json::Json(double value)               : m_ptr(make_shared<JsonDouble>(value)) {}
 Json::Json(int value)                  : m_ptr(make_shared<JsonInt>(value)) {}
 Json::Json(bool value)                 : m_ptr(value ? statics().t : statics().f) {}
@@ -315,9 +315,9 @@ bool Json::operator< (const Json &other) const {
 static inline string esc(char c) {
     char buf[12];
     if (static_cast<uint8_t>(c) >= 0x20 && static_cast<uint8_t>(c) <= 0x7f) {
-        snprintf(buf, sizeof buf, "'%c' (%d)", c, c);
+        _snprintf(buf, sizeof buf, "'%c' (%d)", c, c);
     } else {
-        snprintf(buf, sizeof buf, "(%d)", c);
+        _snprintf(buf, sizeof buf, "(%d)", c);
     }
     return string(buf);
 }
