@@ -1,4 +1,6 @@
 cocos2d/
-proj.*/
-.cocos-project.json
-CMakeLists.txt
+[Dd]ebug.[Ww]in32/
+[Rr]elease.[Ww]in32/
+*.sdf
+*.opensdf
+*.suo
