@@ -26,7 +26,7 @@ Player::Player(PhysicsEngine *physEngine)
 
 bool Player::init(Vec2 const& origin, bool facingLeft)
 {
-	if (!SpriteBatchNode::initWithFile("player_atlas.png"))
+	if (!SpriteBatchNode::initWithFile("gfx/player_atlas.png"))
 		return false;
 
 	const Size idleSize(45, 63);

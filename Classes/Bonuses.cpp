@@ -25,7 +25,7 @@ Bonuses::Bonuses(PhysicsEngine *physEngine)
 
 bool Bonuses::init(std::istream &in, int mapHeight)
 {
-	if (!SpriteBatchNode::initWithFile("bonus_atlas.png"))
+	if (!SpriteBatchNode::initWithFile("gfx/bonus_atlas.png"))
 		return false;
 
 	try
