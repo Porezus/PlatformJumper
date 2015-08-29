@@ -13,6 +13,9 @@
     <Filter Include="src\Physics">
       <UniqueIdentifier>{a3ac61ce-032d-4144-920b-3edea8dcd757}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Bonus">
+      <UniqueIdentifier>{7193207a-5c27-46c3-819f-55be03ff8d6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -22,15 +25,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Bonus.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Bonuses.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\BonusPuppeteer.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Destination.cpp">
@@ -63,6 +57,15 @@
     <ClCompile Include="..\Classes\Physics\PhysicsPuppeteer.cpp">
       <Filter>src\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Bonus\Bonus.cpp">
+      <Filter>src\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Bonus\Bonuses.cpp">
+      <Filter>src\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Bonus\BonusPuppeteer.cpp">
+      <Filter>src\Bonus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -72,15 +75,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Bonus.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Bonuses.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\BonusPuppeteer.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Destination.h">
@@ -115,6 +109,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Physics\PhysicsPuppeteer.h">
       <Filter>src\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bonus\Bonus.h">
+      <Filter>src\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bonus\Bonuses.h">
+      <Filter>src\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bonus\BonusPuppeteer.h">
+      <Filter>src\Bonus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

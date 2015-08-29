@@ -3,7 +3,7 @@
 #include "GameWorld.h"
 #include "Player.h"
 #include "InputManager.h"
-#include "Bonuses.h"
+#include "Bonus\Bonuses.h"
 #include <fstream>
 
 USING_NS_CC;
