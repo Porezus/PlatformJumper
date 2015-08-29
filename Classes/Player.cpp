@@ -1,6 +1,6 @@
 #include "Player.h"
-#include "PhysicsEngine.h"
-#include "NodePhysicsPuppeteer.h"
+#include "Physics\PhysicsEngine.h"
+#include "Physics\NodePhysicsPuppeteer.h"
 #include "AnimationKit.h"
 
 USING_NS_CC;

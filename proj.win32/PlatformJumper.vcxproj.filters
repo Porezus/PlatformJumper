@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Physics">
+      <UniqueIdentifier>{a3ac61ce-032d-4144-920b-3edea8dcd757}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,23 +45,23 @@
     <ClCompile Include="..\Classes\InputManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\NodePhysicsPuppeteer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PhysicsContactsListener.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PhysicsEngine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PhysicsPuppeteer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Player.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\RawDataUtils.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Physics\NodePhysicsPuppeteer.cpp">
+      <Filter>src\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Physics\PhysicsContactsListener.cpp">
+      <Filter>src\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Physics\PhysicsEngine.cpp">
+      <Filter>src\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Physics\PhysicsPuppeteer.cpp">
+      <Filter>src\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,19 +95,7 @@
     <ClInclude Include="..\Classes\InputManager.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\NodePhysicsPuppeteer.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ObjectKeeper.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PhysicsContactsListener.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PhysicsEngine.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PhysicsPuppeteer.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Player.h">
@@ -112,6 +103,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RawDataUtils.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Physics\NodePhysicsPuppeteer.h">
+      <Filter>src\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Physics\PhysicsContactsListener.h">
+      <Filter>src\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Physics\PhysicsEngine.h">
+      <Filter>src\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Physics\PhysicsPuppeteer.h">
+      <Filter>src\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
