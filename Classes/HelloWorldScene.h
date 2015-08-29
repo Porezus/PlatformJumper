@@ -1,5 +1,4 @@
-#ifndef __HELLOWORLD_SCENE_H__
-#define __HELLOWORLD_SCENE_H__
+#pragma once
 
 #include "cocos2d.h"
 #include "ObjectKeeper.h"
@@ -43,5 +42,3 @@ private:
 	cocos2d::Size m_cameraSize;
 	float m_targetPosX;
 };
-
-#endif // __HELLOWORLD_SCENE_H__
