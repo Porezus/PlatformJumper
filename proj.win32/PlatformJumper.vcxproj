@@ -153,7 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GameWorld.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\InputManager.cpp" />
-    <ClCompile Include="..\Classes\json11.cpp" />
+    <ClCompile Include="..\Classes\Json\json11.cpp" />
     <ClCompile Include="..\Classes\Physics\NodePhysicsPuppeteer.cpp" />
     <ClCompile Include="..\Classes\Physics\PhysicsContactsListener.cpp" />
     <ClCompile Include="..\Classes\Physics\PhysicsEngine.cpp" />
@@ -172,7 +172,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GameWorld.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\InputManager.h" />
-    <ClInclude Include="..\Classes\json11.hpp" />
+    <ClInclude Include="..\Classes\Json\json11.hpp" />
     <ClInclude Include="..\Classes\ObjectKeeper.h" />
     <ClInclude Include="..\Classes\Physics\NodePhysicsPuppeteer.h" />
     <ClInclude Include="..\Classes\Physics\PhysicsContactsListener.h" />

@@ -16,6 +16,9 @@
     <Filter Include="src\Bonus">
       <UniqueIdentifier>{7193207a-5c27-46c3-819f-55be03ff8d6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Json">
+      <UniqueIdentifier>{4fdf4781-71f1-4218-b8ab-fd67c9269b56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,8 +69,8 @@
     <ClCompile Include="..\Classes\Bonus\BonusPuppeteer.cpp">
       <Filter>src\Bonus</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\json11.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\Json\json11.cpp">
+      <Filter>src\Json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,8 +125,8 @@
     <ClInclude Include="..\Classes\Bonus\BonusPuppeteer.h">
       <Filter>src\Bonus</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\json11.hpp">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\Json\json11.hpp">
+      <Filter>src\Json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
