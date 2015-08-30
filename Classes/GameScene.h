@@ -28,7 +28,8 @@ public:
 	void GrabBonus();
 
 private:
-	void LoadNextMap();
+	void LoadMap(std::string const& mapName);
+	bool PlayerIsInsideMap() const;
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;
@@ -38,4 +39,5 @@ private:
 
 	int m_bonusesLeft;
 	std::string m_nextMap;
+	std::string m_curMap;
 };

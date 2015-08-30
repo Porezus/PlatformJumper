@@ -51,6 +51,8 @@ bool GameScene::init(std::string const& mapName)
 	if (!Layer::init())
 		return false;
 
+	m_curMap = mapName;
+
 	m_physEngine = PhysicsEngine::create(this, 200);
 	if (!m_physEngine)
 		return false;
@@ -109,6 +111,9 @@ void GameScene::update(float dt)
 
 	m_cameraControl->Update(m_player->GetSpritePosition(), m_player->IsFacingLeft(), dt);
 	setPosition(m_cameraControl->GetPosition());
+
+	if (!PlayerIsInsideMap())
+		LoadMap(m_curMap);
 }
 
 void GameScene::onEnter()
@@ -123,16 +128,16 @@ void GameScene::onExit()
 	Layer::onExit();
 }
 
-void GameScene::LoadNextMap()
+void GameScene::LoadMap(std::string const& mapName)
 {
-	if (m_nextMap.empty())
+	if (mapName.empty())
 	{
 		MessageBox("You've completed the game", "Congratulations!");
 		Director::getInstance()->end();
 		return;
 	}
 
-	auto scene = GameScene::createScene(m_nextMap);
+	auto scene = GameScene::createScene(mapName);
 	if (!scene)
 	{
 		MessageBox("Can't create scene", "Fatal error");
@@ -148,5 +153,12 @@ void GameScene::GrabBonus()
 	--m_bonusesLeft;
 
 	if (m_bonusesLeft == 0)
-		LoadNextMap();
+		LoadMap(m_nextMap);
+}
+
+bool GameScene::PlayerIsInsideMap() const
+{
+	auto pos = m_player->GetSpritePosition();
+	auto size = m_gameWorld->getContentSize();
+	return (pos.x > 0 && pos.y > 0 && pos.x < size.width && pos.y < size.height);
 }
