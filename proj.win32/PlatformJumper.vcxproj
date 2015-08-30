@@ -149,6 +149,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Bonus\Bonus.cpp" />
     <ClCompile Include="..\Classes\Bonus\Bonuses.cpp" />
     <ClCompile Include="..\Classes\Bonus\BonusPuppeteer.cpp" />
+    <ClCompile Include="..\Classes\CameraControl.cpp" />
     <ClCompile Include="..\Classes\GameWorld.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\InputManager.cpp" />
@@ -168,6 +169,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Bonus\Bonus.h" />
     <ClInclude Include="..\Classes\Bonus\Bonuses.h" />
     <ClInclude Include="..\Classes\Bonus\BonusPuppeteer.h" />
+    <ClInclude Include="..\Classes\CameraControl.h" />
     <ClInclude Include="..\Classes\GameWorld.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\InputManager.h" />

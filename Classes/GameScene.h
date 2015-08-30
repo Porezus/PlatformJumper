@@ -8,6 +8,7 @@ class Player;
 class InputManager;
 class GameWorld;
 class Bonuses;
+class CameraControl;
 
 class GameScene : public cocos2d::Layer
 {
@@ -27,19 +28,13 @@ public:
 	void GrabBonus();
 
 private:
-	cocos2d::Vec2 GetPositionInCamera(cocos2d::Vec2 const& scenePos) const;
-	float BindCameraPositionXWithinMap(float x) const;
-	float BindCameraPositionYWithinMap(float y) const;
-
 	void LoadNextMap();
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;
 	InputManager *m_inputManager;
 	GameWorld *m_gameWorld;
-
-	cocos2d::Size m_cameraSize;
-	float m_targetPosX;
+	std::unique_ptr<CameraControl> m_cameraControl;
 
 	int m_bonusesLeft;
 	std::string m_nextMap;

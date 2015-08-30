@@ -5,6 +5,7 @@
 #include "InputManager.h"
 #include "Bonus\Bonuses.h"
 #include "Json\JsonUtils.h"
+#include "CameraControl.h"
 
 USING_NS_CC;
 
@@ -42,8 +43,6 @@ GameScene* GameScene::create(std::string const& mapName)
 }
 
 GameScene::GameScene()
-	: m_cameraSize(Director::getInstance()->getOpenGLView()->getFrameSize())
-	, m_targetPosX(0)
 {}
 
 // on "init" you need to initialize your instance
@@ -80,6 +79,7 @@ bool GameScene::init(std::string const& mapName)
 		return false;
 	addChild(m_inputManager);
 
+	m_cameraControl = std::make_unique<CameraControl>(m_gameWorld->getContentSize());
 	return true;
 }
 
@@ -107,58 +107,8 @@ void GameScene::update(float dt)
 		m_player->Jump();
 	}
 
-	const float DEAD_ZONE_WIDTH = m_cameraSize.width * 0.25f;
-	if (GetPositionInCamera(m_player->GetSpritePosition()).x < DEAD_ZONE_WIDTH)
-	{
-		setPositionX(BindCameraPositionXWithinMap(
-			getPositionX() + (DEAD_ZONE_WIDTH - GetPositionInCamera(m_player->GetSpritePosition()).x)
-		));
-	}
-	if (GetPositionInCamera(m_player->GetSpritePosition()).x > m_cameraSize.width - DEAD_ZONE_WIDTH)
-	{
-		setPositionX(BindCameraPositionXWithinMap(
-			getPositionX() - (GetPositionInCamera(m_player->GetSpritePosition()).x - (m_cameraSize.width - DEAD_ZONE_WIDTH))
-		));
-	}
-
-	const float KEEP_VISIBLE_GAP = m_cameraSize.width * 0.7f;
-	if (!m_player->IsFacingLeft() && m_cameraSize.width - GetPositionInCamera(m_player->GetSpritePosition()).x < KEEP_VISIBLE_GAP)
-	{
-		m_targetPosX = BindCameraPositionXWithinMap(
-			getPosition().x - (KEEP_VISIBLE_GAP - (m_cameraSize.width - GetPositionInCamera(m_player->GetSpritePosition()).x))
-		);
-	}
-	if (m_player->IsFacingLeft() && GetPositionInCamera(m_player->GetSpritePosition()).x < KEEP_VISIBLE_GAP)
-	{
-		m_targetPosX = BindCameraPositionXWithinMap(
-			getPosition().x + (KEEP_VISIBLE_GAP - GetPositionInCamera(m_player->GetSpritePosition()).x)
-		);
-	}
-
-	const float CAM_MOVE_STEP = 200.0f;
-	if (getPositionX() < m_targetPosX)
-	{
-		setPositionX(getPositionX() + CAM_MOVE_STEP * dt);
-	}
-	if (getPositionX() > m_targetPosX)
-	{
-		setPositionX(getPositionX() - CAM_MOVE_STEP * dt);
-	}
-
-	const float UPPER_DEAD_ZONE_HEIGHT = 0.1f * m_cameraSize.height;
-	if (m_cameraSize.height - GetPositionInCamera(m_player->GetSpritePosition()).y < UPPER_DEAD_ZONE_HEIGHT)
-	{
-		setPositionY(BindCameraPositionYWithinMap(
-			getPositionY() - (UPPER_DEAD_ZONE_HEIGHT - (m_cameraSize.height - GetPositionInCamera(m_player->GetSpritePosition()).y))
-		));
-	}
-	const float LOWER_DEAD_ZONE_HEIGHT = 0.3f * m_cameraSize.height;
-	if (GetPositionInCamera(m_player->GetSpritePosition()).y < LOWER_DEAD_ZONE_HEIGHT)
-	{
-		setPositionY(BindCameraPositionYWithinMap(
-			getPositionY() + (LOWER_DEAD_ZONE_HEIGHT - GetPositionInCamera(m_player->GetSpritePosition()).y)
-		));
-	}
+	m_cameraControl->Update(m_player->GetSpritePosition(), m_player->IsFacingLeft(), dt);
+	setPosition(m_cameraControl->GetPosition());
 }
 
 void GameScene::onEnter()
@@ -171,33 +121,6 @@ void GameScene::onExit()
 {
 	unscheduleUpdate();
 	Layer::onExit();
-}
-
-Vec2 GameScene::GetPositionInCamera(Vec2 const& scenePos) const
-{
-	return scenePos + getPosition();
-}
-
-float GameScene::BindCameraPositionXWithinMap(float x) const
-{
-	if (x > 0)
-		return 0;
-
-	if (-x + m_cameraSize.width > m_gameWorld->getContentSize().width)
-		return -(m_gameWorld->getContentSize().width - m_cameraSize.width);
-
-	return x;
-}
-
-float GameScene::BindCameraPositionYWithinMap(float y) const
-{
-	if (y > 0)
-		return 0;
-
-	if (-y + m_cameraSize.height > m_gameWorld->getContentSize().height)
-		return -(m_gameWorld->getContentSize().height - m_cameraSize.height);
-
-	return y;
 }
 
 void GameScene::LoadNextMap()

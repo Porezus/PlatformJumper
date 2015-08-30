@@ -75,6 +75,9 @@
     <ClCompile Include="..\Classes\Player\PlayerPuppeteer.cpp">
       <Filter>src\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CameraControl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Player\PlayerPuppeteer.h">
       <Filter>src\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CameraControl.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
