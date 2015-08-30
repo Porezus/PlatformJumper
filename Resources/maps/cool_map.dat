@@ -23,6 +23,30 @@
 	],
 
 	"bonus": [
+		{
+			"imgRect": { "x": 0, "y": 0, "width": 15, "height": 23 },
+			"origin": { "x": 250, "y": 845 }
+		},
+		{
+			"imgRect": { "x": 15, "y": 0, "width": 10, "height": 10 },
+			"origin": { "x": 786, "y": 317 }
+		},
+		{
+			"imgRect": { "x": 15, "y": 0, "width": 10, "height": 10 },
+			"origin": { "x": 226, "y": 380 }
+		},
+		{
+			"imgRect": { "x": 15, "y": 0, "width": 10, "height": 10 },
+			"origin": { "x": 497, "y": 458 }
+		},
+		{
+			"imgRect": { "x": 15, "y": 0, "width": 10, "height": 10 },
+			"origin": { "x": 1284, "y": 642 }
+		},
+		{
+			"imgRect": { "x": 15, "y": 0, "width": 10, "height": 10 },
+			"origin": { "x": 969, "y": 284 }
+		}
 	],
 
 	"player": {
