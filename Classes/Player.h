@@ -33,6 +33,7 @@ private:
 	cocos2d::Sprite *m_sprite;
 	bool m_facingLeft;
 	bool m_running;
+	bool m_onGround;
 
 	ObjectKeeper<AnimationKit> m_idleKit;
 	ObjectKeeper<AnimationKit> m_runKit;

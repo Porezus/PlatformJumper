@@ -24,6 +24,7 @@ Player* Player::create(PhysicsEngine *physEngine, Json const& json)
 Player::Player(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 	, m_running(false)
+	, m_onGround(false)
 {}
 
 bool Player::init(Json const& json)
@@ -90,9 +91,11 @@ bool Player::init(Json const& json)
 	if (!m_puppeteer)
 		return false;
 
+	const Size playerSize(45, 51);
+
 	b2PolygonShape shape;
-	shape.SetAsBox(45.0f / 2 / m_physEngine->getPtmRatio(),
-		51.0f / 2 / m_physEngine->getPtmRatio());
+	shape.SetAsBox(playerSize.width / 2 / m_physEngine->getPtmRatio(),
+		playerSize.height / 2 / m_physEngine->getPtmRatio());
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
@@ -100,6 +103,17 @@ bool Player::init(Json const& json)
 	fixtureDef.friction = 0.2f;
 	fixtureDef.restitution = 0.1f;
 	if (!m_puppeteer->getBody()->CreateFixture(&fixtureDef))
+		CCASSERT(false, "Can't create fixture");
+
+	shape.SetAsBox(playerSize.width / 4 / m_physEngine->getPtmRatio(),
+		2.5f / m_physEngine->getPtmRatio(),
+		b2Vec2(0, -playerSize.height / 2 / m_physEngine->getPtmRatio()),
+		0.0f);
+
+	b2FixtureDef footSensor;
+	footSensor.shape = &shape;
+	footSensor.isSensor = true;
+	if (!m_puppeteer->getBody()->CreateFixture(&footSensor))
 		CCASSERT(false, "Can't create fixture");
 
 	SetFacing(json["facing"].string_value() == "left");
