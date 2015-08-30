@@ -4,3 +4,4 @@ cocos2d/
 *.sdf
 *.opensdf
 *.suo
+Deploy/
