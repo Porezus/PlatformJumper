@@ -10,4 +10,9 @@ public:
 
 	void didBeginContact(const PhysicsContactInfo &info) override;
 	void didEndContact(const PhysicsContactInfo &info) override;
+
+	bool OnGround() const;
+
+private:
+	bool m_onGround;
 };

@@ -4,7 +4,7 @@
 #include "ObjectKeeper.h"
 
 class PhysicsEngine;
-class NodePhysicsPuppeteer;
+class PlayerPuppeteer;
 class AnimationKit;
 namespace json11
 {
@@ -29,11 +29,10 @@ private:
 	void SetAnimation(AnimationKit *kit);
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
-	ObjectKeeper<NodePhysicsPuppeteer> m_puppeteer;
+	ObjectKeeper<PlayerPuppeteer> m_puppeteer;
 	cocos2d::Sprite *m_sprite;
 	bool m_facingLeft;
 	bool m_running;
-	bool m_onGround;
 
 	ObjectKeeper<AnimationKit> m_idleKit;
 	ObjectKeeper<AnimationKit> m_runKit;

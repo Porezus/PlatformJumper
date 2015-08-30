@@ -24,7 +24,6 @@ Player* Player::create(PhysicsEngine *physEngine, Json const& json)
 Player::Player(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 	, m_running(false)
-	, m_onGround(false)
 {}
 
 bool Player::init(Json const& json)
@@ -102,6 +101,7 @@ bool Player::init(Json const& json)
 	fixtureDef.density = 1.0f;
 	fixtureDef.friction = 0.2f;
 	fixtureDef.restitution = 0.1f;
+	fixtureDef.userData = (void*)0;
 	if (!m_puppeteer->getBody()->CreateFixture(&fixtureDef))
 		CCASSERT(false, "Can't create fixture");
 
@@ -113,6 +113,7 @@ bool Player::init(Json const& json)
 	b2FixtureDef footSensor;
 	footSensor.shape = &shape;
 	footSensor.isSensor = true;
+	footSensor.userData = (void*)1;
 	if (!m_puppeteer->getBody()->CreateFixture(&footSensor))
 		CCASSERT(false, "Can't create fixture");
 
@@ -153,8 +154,11 @@ void Player::Stop()
 
 void Player::Jump()
 {
+	if (!m_puppeteer->OnGround())
+		return;
+
 	auto body = m_puppeteer->getBody();
-	body->ApplyLinearImpulse(b2Vec2(0, 0.04f), body->GetPosition(), false);
+	body->ApplyLinearImpulse(b2Vec2(0, 0.1f), body->GetPosition(), false);
 }
 
 void Player::SetFacing(bool facingLeft)
