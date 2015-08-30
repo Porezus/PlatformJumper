@@ -4,13 +4,17 @@
 #include "ObjectKeeper.h"
 
 class PhysicsEngine;
+namespace json11
+{
+	class Json;
+};
 
 class GameWorld : public cocos2d::Sprite
 {
 public:
-	static GameWorld* create(PhysicsEngine *physEngine, std::string const& img, std::istream &in);
+	static GameWorld* create(PhysicsEngine *physEngine, std::string const& img, json11::Json const& json);
 	GameWorld(PhysicsEngine *physEngine);
-	bool init(std::string const& img, std::istream &in);
+	bool init(std::string const& img, json11::Json const& json);
 
 private:
 	void AddRectBlock(cocos2d::Rect const& rect);

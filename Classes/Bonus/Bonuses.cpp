@@ -2,13 +2,15 @@
 #include "Bonus.h"
 #include "Physics\PhysicsEngine.h"
 #include "RawDataUtils.h"
+#include "json\JsonUtils.h"
 
 USING_NS_CC;
+using namespace json11;
 
-Bonuses* Bonuses::create(PhysicsEngine *physEngine, std::istream &in, int mapHeight)
+Bonuses* Bonuses::create(PhysicsEngine *physEngine, Json const& json, int mapHeight)
 {
 	Bonuses *pRet = new (std::nothrow) Bonuses(physEngine);
-	if (pRet && pRet->init(in, mapHeight))
+	if (pRet && pRet->init(json, mapHeight))
 	{
 		pRet->autorelease();
 	}
@@ -23,30 +25,19 @@ Bonuses::Bonuses(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool Bonuses::init(std::istream &in, int mapHeight)
+bool Bonuses::init(Json const& json, int mapHeight)
 {
 	if (!SpriteBatchNode::initWithFile("gfx/bonus_atlas.png"))
 		return false;
 
-	try
+	auto bonusArray = json.array_items();
+	for (auto &bonus : bonusArray)
 	{
-		const size_t bonusCnt = RawData::ReadSizeT(in);
-		for (size_t i = 0; i < bonusCnt; ++i)
-		{
-			const Rect imageRect(RawData::ReadRect(in));
+		Vec2 origin(JsonUtils::ParseVec2(bonus["origin"]));
+		origin.y = mapHeight - origin.y;
 
-			Vec2 origin(RawData::ReadVec2(in));
-			origin.y = mapHeight - origin.y;
-
-			const int value(RawData::ReadInt(in));
-
-			if (!AddBonus(imageRect, origin, value))
-				return false;
-		}
-	}
-	catch (std::exception const&)
-	{
-		return false;
+		if (!AddBonus(JsonUtils::ParseRect(bonus["imgRect"]), origin, bonus["value"].int_value()))
+			return false;
 	}
 
 	return true;

@@ -26,3 +26,9 @@ Vec2 JsonUtils::ParseVec2(Json const& json)
 {
 	return Vec2(json["x"].number_value(), json["y"].number_value());
 }
+
+Rect JsonUtils::ParseRect(Json const& json)
+{
+	return Rect(json["x"].number_value(), json["y"].number_value(),
+		json["width"].number_value(), json["height"].number_value());
+}

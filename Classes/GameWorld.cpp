@@ -1,13 +1,15 @@
 #include "GameWorld.h"
 #include "Physics\PhysicsEngine.h"
 #include "RawDataUtils.h"
+#include "Json\JsonUtils.h"
 
 USING_NS_CC;
+using namespace json11;
 
-GameWorld* GameWorld::create(PhysicsEngine *physEngine, std::string const& img, std::istream &in)
+GameWorld* GameWorld::create(PhysicsEngine *physEngine, std::string const& img, Json const& json)
 {
 	GameWorld *pRet = new (std::nothrow) GameWorld(physEngine);
-	if (pRet && pRet->init(img, in))
+	if (pRet && pRet->init(img, json))
 	{
 		pRet->autorelease();
 	}
@@ -22,25 +24,18 @@ GameWorld::GameWorld(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool GameWorld::init(std::string const& img, std::istream &in)
+bool GameWorld::init(std::string const& img, Json const& json)
 {
 	if (!Sprite::initWithFile(img))
 		return false;
 
-	try
+	auto blockArray = json.array_items();
+	for (auto &block : blockArray)
 	{
-		const size_t blockCnt = RawData::ReadSizeT(in);
-		for (size_t i = 0; i < blockCnt; ++i)
-		{
-			const Vec2 leftUp(RawData::ReadVec2(in));
-			const Vec2 rightDown(RawData::ReadVec2(in));
-			const Size size(rightDown.x - leftUp.x, rightDown.y - leftUp.y);
-			AddRectBlock(Rect(Vec2(leftUp.x, getContentSize().height - leftUp.y - size.height), size));
-		}
-	}
-	catch (std::exception const&)
-	{
-		return false;
+		const Vec2 leftUp(block["left"].number_value(), block["top"].number_value());
+		const Vec2 rightDown(block["right"].number_value(), block["bottom"].number_value());
+		const Size size(rightDown.x - leftUp.x, rightDown.y - leftUp.y);
+		AddRectBlock(Rect(Vec2(leftUp.x, getContentSize().height - leftUp.y - size.height), size));
 	}
 
 	setAnchorPoint(Vec2());

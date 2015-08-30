@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "InputManager.h"
 #include "Bonus\Bonuses.h"
-#include <fstream>
+#include "Json\JsonUtils.h"
 
 USING_NS_CC;
 
@@ -59,11 +59,9 @@ bool HelloWorld::init(Destination const& destination)
 	if (!m_physEngine)
 		return false;
 
-	std::ifstream dataFile(destination.mapName + ".dat");
-	if (!dataFile.is_open())
-		return false;
+	auto dataJson = JsonUtils::LoadFromFile(destination.mapName + ".dat");
 
-	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName + ".png", dataFile);
+	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName + ".png", dataJson["world"]);
 	if (!m_gameWorld)
 		return false;
 	addChild(m_gameWorld);
@@ -73,7 +71,7 @@ bool HelloWorld::init(Destination const& destination)
 		return false;
 	addChild(m_player);
 
-	auto bonuses = Bonuses::create(m_physEngine, dataFile, m_gameWorld->getContentSize().height);
+	auto bonuses = Bonuses::create(m_physEngine, dataJson["bonus"], m_gameWorld->getContentSize().height);
 	if (!bonuses)
 		return false;
 	addChild(bonuses);
