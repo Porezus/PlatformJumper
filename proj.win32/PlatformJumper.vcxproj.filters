@@ -72,6 +72,9 @@
     <ClCompile Include="..\Classes\Json\json11.cpp">
       <Filter>src\Json</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Json\JsonUtils.cpp">
+      <Filter>src\Json</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -126,6 +129,9 @@
       <Filter>src\Bonus</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Json\json11.hpp">
+      <Filter>src\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Json\JsonUtils.h">
       <Filter>src\Json</Filter>
     </ClInclude>
   </ItemGroup>

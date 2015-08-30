@@ -1,8 +1,9 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-#include <fstream>
+#include "Json\JsonUtils.h"
 
 USING_NS_CC;
+using namespace json11;
 
 AppDelegate::AppDelegate()
 {}
@@ -47,31 +48,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	register_all_packages();
 
-	std::ifstream dstFile("start.dst");
-	if (!dstFile.is_open())
+	// create a scene. it's an autorelease object
+	auto scene = HelloWorld::createScene(Destination(JsonUtils::LoadFromFile("start.dst")));
+	if (!scene)
 	{
-		MessageBox("Can't open dst file", "Fatal error");
+		MessageBox("Can't create scene", "Fatal error");
 		return false;
 	}
 
-	try
-	{
-		// create a scene. it's an autorelease object
-		auto scene = HelloWorld::createScene(Destination(dstFile));
-		if (!scene)
-		{
-			MessageBox("Can't create scene", "Fatal error");
-			return false;
-		}
-
-		// run
-		director->runWithScene(scene);
-	}
-	catch (std::exception const&)
-	{
-		MessageBox("Can't parse dst file", "Fatal error");
-		return false;
-	}
+	// run
+	director->runWithScene(scene);
 
 	return true;
 }
