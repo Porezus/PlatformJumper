@@ -32,7 +32,7 @@ void CameraControl::Update(Vec2 const& playerPosition, bool playerFacingLeft, fl
 	}
 	m_targetPositionX = BindCameraPositionXWithinMap(m_targetPositionX);
 
-	const float CAM_MOVE_SPEED = 200.0f;
+	const float CAM_MOVE_SPEED = 300.0f;
 	if (m_currentPosition.x < m_targetPositionX)
 	{
 		m_currentPosition.x += (CAM_MOVE_SPEED * dt);

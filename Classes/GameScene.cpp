@@ -66,7 +66,7 @@ bool GameScene::init(std::string const& mapName)
 		return false;
 	addChild(m_gameWorld);
 
-	m_player = Player::create(m_physEngine, dataJson["player"]);
+	m_player = Player::create(m_physEngine, dataJson["player"], m_gameWorld->getContentSize().height);
 	if (!m_player)
 		return false;
 	addChild(m_player);
@@ -90,14 +90,14 @@ void GameScene::update(float dt)
 	Layer::update(dt);
 	m_physEngine->tick(dt);
 
-	const float MOVE_STEP = 0.4f;
+	const float MOVE_SPEED = 0.14f;
 	if (m_inputManager->IsLeft())
 	{
-		m_player->Move(-MOVE_STEP * dt);
+		m_player->Move(-MOVE_SPEED * dt);
 	}
 	else if (m_inputManager->IsRight())
 	{
-		m_player->Move(MOVE_STEP * dt);
+		m_player->Move(MOVE_SPEED * dt);
 	}
 	else
 	{

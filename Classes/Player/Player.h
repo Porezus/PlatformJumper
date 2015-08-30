@@ -14,9 +14,9 @@ namespace json11
 class Player : public cocos2d::SpriteBatchNode
 {
 public:
-	static Player* create(PhysicsEngine *physEngine, json11::Json const& json);
+	static Player* create(PhysicsEngine *physEngine, json11::Json const& json, int mapHeight);
 	Player();
-	bool init(PhysicsEngine *physEngine, json11::Json const& json);
+	bool init(PhysicsEngine *physEngine, json11::Json const& json, int mapHeight);
 
 	void Move(float dx);
 	void Stop();

@@ -7,10 +7,10 @@
 USING_NS_CC;
 using namespace json11;
 
-Player* Player::create(PhysicsEngine *physEngine, Json const& json)
+Player* Player::create(PhysicsEngine *physEngine, Json const& json, int mapHeight)
 {
 	Player *pRet = new (std::nothrow) Player();
-	if (pRet && pRet->init(physEngine, json))
+	if (pRet && pRet->init(physEngine, json, mapHeight))
 	{
 		pRet->autorelease();
 	}
@@ -25,7 +25,7 @@ Player::Player()
 	: m_running(false)
 {}
 
-bool Player::init(PhysicsEngine *physEngine, Json const& json)
+bool Player::init(PhysicsEngine *physEngine, Json const& json, int mapHeight)
 {
 	if (!SpriteBatchNode::initWithFile("gfx/player_atlas.png"))
 		return false;
@@ -76,6 +76,7 @@ bool Player::init(PhysicsEngine *physEngine, Json const& json)
 	SetAnimation(m_idleKit);
 
 	auto origin = JsonUtils::ParseVec2(json["origin"]);
+	origin.y = mapHeight - origin.y;
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -89,7 +90,7 @@ bool Player::init(PhysicsEngine *physEngine, Json const& json)
 	if (!m_puppeteer)
 		return false;
 
-	const Size playerSize(45, 51);
+	const Size playerSize(25, 51);
 
 	b2PolygonShape shape;
 	shape.SetAsBox(playerSize.width / 2 / physEngine->getPtmRatio(),
@@ -157,7 +158,7 @@ void Player::Jump()
 		return;
 
 	auto body = m_puppeteer->getBody();
-	body->ApplyLinearImpulse(b2Vec2(0, 0.1f), body->GetPosition(), false);
+	body->ApplyLinearImpulse(b2Vec2(0, 0.06f), body->GetPosition(), false);
 }
 
 void Player::SetFacing(bool facingLeft)
