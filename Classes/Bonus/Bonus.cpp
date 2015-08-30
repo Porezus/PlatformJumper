@@ -4,10 +4,11 @@
 
 USING_NS_CC;
 
-Bonus* Bonus::create(Texture2D *texture, Rect const& imageRect, Vec2 const& origin, int value, PhysicsEngine *physEngine)
+Bonus* Bonus::create(Texture2D *texture, Rect const& imageRect,
+	Vec2 const& origin, PhysicsEngine *physEngine)
 {
 	Bonus *pRet = new (std::nothrow) Bonus(physEngine);
-	if (pRet && pRet->init(texture, imageRect, origin, value))
+	if (pRet && pRet->init(texture, imageRect, origin))
 	{
 		pRet->autorelease();
 	}
@@ -22,7 +23,7 @@ Bonus::Bonus(PhysicsEngine *physEngine)
 	: m_physEngine(physEngine)
 {}
 
-bool Bonus::init(Texture2D *texture, Rect const& imageRect, Vec2 const& origin, int value)
+bool Bonus::init(Texture2D *texture, Rect const& imageRect, Vec2 const& origin)
 {
 	if (!Sprite::initWithTexture(texture, imageRect))
 		return false;

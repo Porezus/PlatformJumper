@@ -17,6 +17,6 @@ public:
 	bool init(json11::Json const& json, int mapHeight);
 
 private:
-	bool AddBonus(cocos2d::Rect const& imageRect, cocos2d::Vec2 const& origin, int value);
+	bool AddBonus(cocos2d::Rect const& imageRect, cocos2d::Vec2 const& origin);
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 };

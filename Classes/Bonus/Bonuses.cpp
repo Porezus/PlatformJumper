@@ -35,16 +35,16 @@ bool Bonuses::init(Json const& json, int mapHeight)
 		Vec2 origin(JsonUtils::ParseVec2(bonus["origin"]));
 		origin.y = mapHeight - origin.y;
 
-		if (!AddBonus(JsonUtils::ParseRect(bonus["imgRect"]), origin, bonus["value"].int_value()))
+		if (!AddBonus(JsonUtils::ParseRect(bonus["imgRect"]), origin))
 			return false;
 	}
 
 	return true;
 }
 
-bool Bonuses::AddBonus(Rect const& imageRect, Vec2 const& origin, int value)
+bool Bonuses::AddBonus(Rect const& imageRect, Vec2 const& origin)
 {
-	auto bonus = Bonus::create(getTexture(), imageRect, origin, value, m_physEngine);
+	auto bonus = Bonus::create(getTexture(), imageRect, origin, m_physEngine);
 	if (!bonus)
 		return false;
 	addChild(bonus);
