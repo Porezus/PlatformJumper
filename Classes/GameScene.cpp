@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include "Physics\PhysicsEngine.h"
 #include "GameWorld.h"
-#include "Player.h"
+#include "Player\Player.h"
 #include "InputManager.h"
 #include "Bonus\Bonuses.h"
 #include "Json\JsonUtils.h"
