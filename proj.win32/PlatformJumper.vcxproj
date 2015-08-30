@@ -151,7 +151,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Bonus\BonusPuppeteer.cpp" />
     <ClCompile Include="..\Classes\Destination.cpp" />
     <ClCompile Include="..\Classes\GameWorld.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\InputManager.cpp" />
     <ClCompile Include="..\Classes\Json\json11.cpp" />
     <ClCompile Include="..\Classes\Json\JsonUtils.cpp" />
@@ -170,7 +170,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Bonus\BonusPuppeteer.h" />
     <ClInclude Include="..\Classes\Destination.h" />
     <ClInclude Include="..\Classes\GameWorld.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\InputManager.h" />
     <ClInclude Include="..\Classes\Json\json11.hpp" />
     <ClInclude Include="..\Classes\Json\JsonUtils.h" />
