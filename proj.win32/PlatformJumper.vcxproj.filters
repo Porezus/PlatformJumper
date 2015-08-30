@@ -19,6 +19,9 @@
     <Filter Include="src\Json">
       <UniqueIdentifier>{4fdf4781-71f1-4218-b8ab-fd67c9269b56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Player">
+      <UniqueIdentifier>{a171a9fe-5eff-4b75-811b-a6747b0476ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,9 +37,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\InputManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Player.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Physics\NodePhysicsPuppeteer.cpp">
@@ -69,8 +69,11 @@
     <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\PlayerPuppeteer.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\Player\Player.cpp">
+      <Filter>src\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Player\PlayerPuppeteer.cpp">
+      <Filter>src\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,9 +93,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ObjectKeeper.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Player.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Physics\NodePhysicsPuppeteer.h">
@@ -125,8 +125,11 @@
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\PlayerPuppeteer.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\Player\Player.h">
+      <Filter>src\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player\PlayerPuppeteer.h">
+      <Filter>src\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

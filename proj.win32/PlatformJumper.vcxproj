@@ -158,8 +158,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Physics\PhysicsContactsListener.cpp" />
     <ClCompile Include="..\Classes\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="..\Classes\Physics\PhysicsPuppeteer.cpp" />
-    <ClCompile Include="..\Classes\Player.cpp" />
-    <ClCompile Include="..\Classes\PlayerPuppeteer.cpp" />
+    <ClCompile Include="..\Classes\Player\Player.cpp" />
+    <ClCompile Include="..\Classes\Player\PlayerPuppeteer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,8 +178,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Physics\PhysicsContactsListener.h" />
     <ClInclude Include="..\Classes\Physics\PhysicsEngine.h" />
     <ClInclude Include="..\Classes\Physics\PhysicsPuppeteer.h" />
-    <ClInclude Include="..\Classes\Player.h" />
-    <ClInclude Include="..\Classes\PlayerPuppeteer.h" />
+    <ClInclude Include="..\Classes\Player\Player.h" />
+    <ClInclude Include="..\Classes\Player\PlayerPuppeteer.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
