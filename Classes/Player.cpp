@@ -2,13 +2,15 @@
 #include "Physics\PhysicsEngine.h"
 #include "Physics\NodePhysicsPuppeteer.h"
 #include "AnimationKit.h"
+#include "Json\JsonUtils.h"
 
 USING_NS_CC;
+using namespace json11;
 
-Player* Player::create(PhysicsEngine *physEngine, Vec2 const& origin, bool facingLeft)
+Player* Player::create(PhysicsEngine *physEngine, Json const& json)
 {
 	Player *pRet = new (std::nothrow) Player(physEngine);
-	if (pRet && pRet->init(origin, facingLeft))
+	if (pRet && pRet->init(json))
 	{
 		pRet->autorelease();
 	}
@@ -24,7 +26,7 @@ Player::Player(PhysicsEngine *physEngine)
 	, m_running(false)
 {}
 
-bool Player::init(Vec2 const& origin, bool facingLeft)
+bool Player::init(Json const& json)
 {
 	if (!SpriteBatchNode::initWithFile("gfx/player_atlas.png"))
 		return false;
@@ -74,6 +76,8 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 
 	SetAnimation(m_idleKit);
 
+	auto origin = JsonUtils::ParseVec2(json["origin"]);
+
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.fixedRotation = true;
@@ -98,7 +102,7 @@ bool Player::init(Vec2 const& origin, bool facingLeft)
 	if (!m_puppeteer->getBody()->CreateFixture(&fixtureDef))
 		CCASSERT(false, "Can't create fixture");
 
-	SetFacing(facingLeft);
+	SetFacing(json["facing"].string_value() == "left");
 
 	return true;
 }

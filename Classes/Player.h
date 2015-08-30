@@ -6,13 +6,17 @@
 class PhysicsEngine;
 class NodePhysicsPuppeteer;
 class AnimationKit;
+namespace json11
+{
+	class Json;
+};
 
 class Player : public cocos2d::SpriteBatchNode
 {
 public:
-	static Player* create(PhysicsEngine *physEngine, cocos2d::Vec2 const& origin, bool facingLeft);
+	static Player* create(PhysicsEngine *physEngine, json11::Json const& json);
 	Player(PhysicsEngine *physEngine);
-	bool init(cocos2d::Vec2 const& origin, bool facingLeft);
+	bool init(json11::Json const& json);
 
 	void Move(float dx);
 	void Stop();

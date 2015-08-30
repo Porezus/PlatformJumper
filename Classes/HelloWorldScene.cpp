@@ -66,7 +66,7 @@ bool HelloWorld::init(Destination const& destination)
 		return false;
 	addChild(m_gameWorld);
 
-	m_player = Player::create(m_physEngine, destination.position, false);
+	m_player = Player::create(m_physEngine, dataJson["player"]);
 	if (!m_player)
 		return false;
 	addChild(m_player);
