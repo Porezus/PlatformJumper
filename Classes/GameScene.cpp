@@ -1,4 +1,4 @@
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 #include "Physics\PhysicsEngine.h"
 #include "GameWorld.h"
 #include "Player.h"
@@ -8,7 +8,7 @@
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene(Destination const& destination)
+Scene* GameScene::createScene(Destination const& destination)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -16,7 +16,7 @@ Scene* HelloWorld::createScene(Destination const& destination)
 		return nullptr;
 	
 	// 'layer' is an autorelease object
-	auto layer = HelloWorld::create(destination);
+	auto layer = GameScene::create(destination);
 	if (!layer)
 		return nullptr;
 
@@ -27,9 +27,9 @@ Scene* HelloWorld::createScene(Destination const& destination)
 	return scene;
 }
 
-HelloWorld* HelloWorld::create(Destination const& destination)
+GameScene* GameScene::create(Destination const& destination)
 {
-	HelloWorld *pRet = new (std::nothrow) HelloWorld();
+	GameScene *pRet = new (std::nothrow) GameScene();
 	if (pRet && pRet->init(destination))
 	{
 		pRet->autorelease();
@@ -41,13 +41,13 @@ HelloWorld* HelloWorld::create(Destination const& destination)
 	return pRet;
 }
 
-HelloWorld::HelloWorld()
+GameScene::GameScene()
 	: m_cameraSize(Director::getInstance()->getOpenGLView()->getFrameSize())
 	, m_targetPosX(0)
 {}
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init(Destination const& destination)
+bool GameScene::init(Destination const& destination)
 {
 	if (!Layer::init())
 		return false;
@@ -84,7 +84,7 @@ bool HelloWorld::init(Destination const& destination)
 	return true;
 }
 
-void HelloWorld::update(float dt)
+void GameScene::update(float dt)
 {
 	Layer::update(dt);
 	m_physEngine->tick(dt);
@@ -162,24 +162,24 @@ void HelloWorld::update(float dt)
 	}
 }
 
-void HelloWorld::onEnter()
+void GameScene::onEnter()
 {
 	Layer::onEnter();
 	scheduleUpdate();
 }
 
-void HelloWorld::onExit()
+void GameScene::onExit()
 {
 	unscheduleUpdate();
 	Layer::onExit();
 }
 
-Vec2 HelloWorld::GetPositionInCamera(Vec2 const& scenePos) const
+Vec2 GameScene::GetPositionInCamera(Vec2 const& scenePos) const
 {
 	return scenePos + getPosition();
 }
 
-float HelloWorld::BindCameraPositionXWithinMap(float x) const
+float GameScene::BindCameraPositionXWithinMap(float x) const
 {
 	if (x > 0)
 		return 0;
@@ -190,7 +190,7 @@ float HelloWorld::BindCameraPositionXWithinMap(float x) const
 	return x;
 }
 
-float HelloWorld::BindCameraPositionYWithinMap(float y) const
+float GameScene::BindCameraPositionYWithinMap(float y) const
 {
 	if (y > 0)
 		return 0;
@@ -201,9 +201,9 @@ float HelloWorld::BindCameraPositionYWithinMap(float y) const
 	return y;
 }
 
-void HelloWorld::ChangeMap(Destination const& destination)
+void GameScene::ChangeMap(Destination const& destination)
 {
-	auto scene = HelloWorld::createScene(destination);
+	auto scene = GameScene::createScene(destination);
 	if (!scene)
 	{
 		MessageBox("Can't create scene", "Fatal error");
@@ -212,7 +212,7 @@ void HelloWorld::ChangeMap(Destination const& destination)
 	Director::getInstance()->replaceScene(scene);
 }
 
-void HelloWorld::EndGame()
+void GameScene::EndGame()
 {
 	Director::getInstance()->end();
 }

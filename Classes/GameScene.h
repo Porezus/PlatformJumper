@@ -10,14 +10,14 @@ class InputManager;
 class GameWorld;
 class Bonuses;
 
-class HelloWorld : public cocos2d::Layer
+class GameScene : public cocos2d::Layer
 {
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
 	static cocos2d::Scene* createScene(Destination const& destination);
 
-	static HelloWorld* create(Destination const& destination);
-	HelloWorld();
+	static GameScene* create(Destination const& destination);
+	GameScene();
 
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init(Destination const& destination);
