@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "Physics\PhysicsEngine.h"
-#include "Physics\NodePhysicsPuppeteer.h"
+#include "PlayerPuppeteer.h"
 #include "AnimationKit.h"
 #include "Json\JsonUtils.h"
 
@@ -87,7 +87,7 @@ bool Player::init(Json const& json)
 	if (!m_physEngine->createBody(bodyDef))
 		CCASSERT(false, "Can't create body");
 
-	m_puppeteer = NodePhysicsPuppeteer::create(m_sprite, bodyDef, m_physEngine);
+	m_puppeteer = PlayerPuppeteer::create(m_sprite, bodyDef, m_physEngine);
 	if (!m_puppeteer)
 		return false;
 
