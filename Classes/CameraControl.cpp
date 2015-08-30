@@ -35,11 +35,11 @@ void CameraControl::Update(Vec2 const& playerPosition, bool playerFacingLeft, fl
 	const float CAM_MOVE_SPEED = 300.0f;
 	if (m_currentPosition.x < m_targetPositionX)
 	{
-		m_currentPosition.x += (CAM_MOVE_SPEED * dt);
+		m_currentPosition.x = fminf(m_targetPositionX, m_currentPosition.x + (CAM_MOVE_SPEED * dt));
 	}
 	if (m_currentPosition.x > m_targetPositionX)
 	{
-		m_currentPosition.x -= (CAM_MOVE_SPEED * dt);
+		m_currentPosition.x = fmaxf(m_targetPositionX, m_currentPosition.x - (CAM_MOVE_SPEED * dt));
 	}
 
 	const float UPPER_DEAD_ZONE_HEIGHT = 0.1f * m_cameraSize.height;
