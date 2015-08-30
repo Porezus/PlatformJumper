@@ -30,9 +30,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Destination.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameWorld.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Destination.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameWorld.h">

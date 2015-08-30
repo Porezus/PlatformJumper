@@ -2,7 +2,6 @@
 
 #include "cocos2d.h"
 #include "ObjectKeeper.h"
-#include "Destination.h"
 
 class PhysicsEngine;
 class Player;
@@ -14,13 +13,13 @@ class GameScene : public cocos2d::Layer
 {
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
-	static cocos2d::Scene* createScene(Destination const& destination);
+	static cocos2d::Scene* createScene(std::string const& mapName);
 
-	static GameScene* create(Destination const& destination);
+	static GameScene* create(std::string const& mapName);
 	GameScene();
 
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-	virtual bool init(Destination const& destination);
+	virtual bool init(std::string const& mapName);
 	
 	virtual void update(float dt) override;
 	virtual void onEnter() override;
@@ -31,7 +30,7 @@ private:
 	float BindCameraPositionXWithinMap(float x) const;
 	float BindCameraPositionYWithinMap(float y) const;
 
-	void ChangeMap(Destination const& destination);
+	void ChangeMap(std::string const& mapName);
 	void EndGame();
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;

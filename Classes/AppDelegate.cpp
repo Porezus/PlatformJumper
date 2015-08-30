@@ -49,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	register_all_packages();
 
 	// create a scene. it's an autorelease object
-	auto scene = GameScene::createScene(Destination(JsonUtils::LoadFromFile("start.dst")));
+	auto scene = GameScene::createScene(JsonUtils::LoadFromFile("start.dst")["map"].string_value());
 	if (!scene)
 	{
 		MessageBox("Can't create scene", "Fatal error");

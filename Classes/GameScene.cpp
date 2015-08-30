@@ -8,7 +8,7 @@
 
 USING_NS_CC;
 
-Scene* GameScene::createScene(Destination const& destination)
+Scene* GameScene::createScene(std::string const& mapName)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -16,7 +16,7 @@ Scene* GameScene::createScene(Destination const& destination)
 		return nullptr;
 	
 	// 'layer' is an autorelease object
-	auto layer = GameScene::create(destination);
+	auto layer = GameScene::create(mapName);
 	if (!layer)
 		return nullptr;
 
@@ -27,10 +27,10 @@ Scene* GameScene::createScene(Destination const& destination)
 	return scene;
 }
 
-GameScene* GameScene::create(Destination const& destination)
+GameScene* GameScene::create(std::string const& mapName)
 {
 	GameScene *pRet = new (std::nothrow) GameScene();
-	if (pRet && pRet->init(destination))
+	if (pRet && pRet->init(mapName))
 	{
 		pRet->autorelease();
 	}
@@ -47,7 +47,7 @@ GameScene::GameScene()
 {}
 
 // on "init" you need to initialize your instance
-bool GameScene::init(Destination const& destination)
+bool GameScene::init(std::string const& mapName)
 {
 	if (!Layer::init())
 		return false;
@@ -59,9 +59,9 @@ bool GameScene::init(Destination const& destination)
 	if (!m_physEngine)
 		return false;
 
-	auto dataJson = JsonUtils::LoadFromFile(destination.mapName + ".dat");
+	auto dataJson = JsonUtils::LoadFromFile(mapName + ".dat");
 
-	m_gameWorld = GameWorld::create(m_physEngine, destination.mapName + ".png", dataJson["world"]);
+	m_gameWorld = GameWorld::create(m_physEngine, mapName + ".png", dataJson["world"]);
 	if (!m_gameWorld)
 		return false;
 	addChild(m_gameWorld);
@@ -201,9 +201,9 @@ float GameScene::BindCameraPositionYWithinMap(float y) const
 	return y;
 }
 
-void GameScene::ChangeMap(Destination const& destination)
+void GameScene::ChangeMap(std::string const& mapName)
 {
-	auto scene = GameScene::createScene(destination);
+	auto scene = GameScene::createScene(mapName);
 	if (!scene)
 	{
 		MessageBox("Can't create scene", "Fatal error");
