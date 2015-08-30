@@ -1,5 +1,6 @@
 #include "BonusPuppeteer.h"
 #include "Physics\PhysicsEngine.h"
+#include "GameScene.h"
 
 USING_NS_CC;
 
@@ -29,5 +30,6 @@ void BonusPuppeteer::willUpdatePhysics(float dt)
 
 void BonusPuppeteer::didBeginContact(const PhysicsContactInfo &info)
 {
+	dynamic_cast<GameScene*>(m_node->getParent()->getParent())->GrabBonus();
 	m_node->getParent()->removeChild(m_node);
 }

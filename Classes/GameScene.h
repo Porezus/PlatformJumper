@@ -24,14 +24,14 @@ public:
 	virtual void update(float dt) override;
 	virtual void onEnter() override;
 	virtual void onExit() override;
+	void GrabBonus();
 
 private:
 	cocos2d::Vec2 GetPositionInCamera(cocos2d::Vec2 const& scenePos) const;
 	float BindCameraPositionXWithinMap(float x) const;
 	float BindCameraPositionYWithinMap(float y) const;
 
-	void ChangeMap(std::string const& mapName);
-	void EndGame();
+	void LoadNextMap();
 
 	ObjectKeeper<PhysicsEngine> m_physEngine;
 	Player *m_player;
@@ -40,4 +40,7 @@ private:
 
 	cocos2d::Size m_cameraSize;
 	float m_targetPosX;
+
+	int m_bonusesLeft;
+	std::string m_nextMap;
 };

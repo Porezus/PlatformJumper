@@ -52,14 +52,13 @@ bool GameScene::init(std::string const& mapName)
 	if (!Layer::init())
 		return false;
 
-	//Size visibleSize = Director::getInstance()->getVisibleSize();
-	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	m_physEngine = PhysicsEngine::create(this, 200);
 	if (!m_physEngine)
 		return false;
 
 	auto dataJson = JsonUtils::LoadFromFile(mapName + ".dat");
+	m_bonusesLeft = dataJson["bonus"].array_items().size();
+	m_nextMap = dataJson["nextMap"].string_value();
 
 	m_gameWorld = GameWorld::create(m_physEngine, mapName + ".png", dataJson["world"]);
 	if (!m_gameWorld)
@@ -201,18 +200,30 @@ float GameScene::BindCameraPositionYWithinMap(float y) const
 	return y;
 }
 
-void GameScene::ChangeMap(std::string const& mapName)
+void GameScene::LoadNextMap()
 {
-	auto scene = GameScene::createScene(mapName);
+	if (m_nextMap.empty())
+	{
+		MessageBox("You've completed the game", "Congratulations!");
+		Director::getInstance()->end();
+		return;
+	}
+
+	auto scene = GameScene::createScene(m_nextMap);
 	if (!scene)
 	{
 		MessageBox("Can't create scene", "Fatal error");
 		Director::getInstance()->end();
+		return;
 	}
 	Director::getInstance()->replaceScene(scene);
 }
 
-void GameScene::EndGame()
+void GameScene::GrabBonus()
 {
-	Director::getInstance()->end();
+	CCASSERT(m_bonusesLeft > 0, "There should be some bonus to grab");
+	--m_bonusesLeft;
+
+	if (m_bonusesLeft == 0)
+		LoadNextMap();
 }
