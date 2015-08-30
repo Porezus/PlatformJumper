@@ -45,9 +45,6 @@
     <ClCompile Include="..\Classes\Player.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RawDataUtils.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Physics\NodePhysicsPuppeteer.cpp">
       <Filter>src\Physics</Filter>
     </ClCompile>
@@ -102,9 +99,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Player.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\RawDataUtils.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Physics\NodePhysicsPuppeteer.h">

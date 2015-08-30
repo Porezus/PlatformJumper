@@ -1,6 +1,5 @@
 #include "GameWorld.h"
 #include "Physics\PhysicsEngine.h"
-#include "RawDataUtils.h"
 #include "Json\JsonUtils.h"
 
 USING_NS_CC;
