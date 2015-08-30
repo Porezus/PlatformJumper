@@ -46,9 +46,7 @@ bool Bonus::init(Texture2D *texture, Rect const& imageRect, Vec2 const& origin, 
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
-	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.2f;
-	fixtureDef.restitution = 0.0f;
+	fixtureDef.isSensor = true;
 	if (!m_puppeteer->getBody()->CreateFixture(&fixtureDef))
 		CCASSERT(false, "Can't create fixture");
 

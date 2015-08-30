@@ -54,9 +54,6 @@ void GameWorld::AddRectBlock(Rect const& rect)
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &rectShape;
-	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.2f;
-	fixtureDef.restitution = 0.0f;
 
 	auto body = m_physEngine->createBody(bodyDef);
 	CCASSERT(body, "Can't create body");
