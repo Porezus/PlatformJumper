@@ -15,8 +15,8 @@ class Player : public cocos2d::SpriteBatchNode
 {
 public:
 	static Player* create(PhysicsEngine *physEngine, json11::Json const& json);
-	Player(PhysicsEngine *physEngine);
-	bool init(json11::Json const& json);
+	Player();
+	bool init(PhysicsEngine *physEngine, json11::Json const& json);
 
 	void Move(float dx);
 	void Stop();
@@ -28,7 +28,6 @@ private:
 	void SetFacing(bool facingLeft);
 	void SetAnimation(AnimationKit *kit);
 
-	ObjectKeeper<PhysicsEngine> m_physEngine;
 	ObjectKeeper<PlayerPuppeteer> m_puppeteer;
 	cocos2d::Sprite *m_sprite;
 	bool m_facingLeft;

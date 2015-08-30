@@ -9,8 +9,8 @@ using namespace json11;
 
 Player* Player::create(PhysicsEngine *physEngine, Json const& json)
 {
-	Player *pRet = new (std::nothrow) Player(physEngine);
-	if (pRet && pRet->init(json))
+	Player *pRet = new (std::nothrow) Player();
+	if (pRet && pRet->init(physEngine, json))
 	{
 		pRet->autorelease();
 	}
@@ -21,12 +21,11 @@ Player* Player::create(PhysicsEngine *physEngine, Json const& json)
 	return pRet;
 }
 
-Player::Player(PhysicsEngine *physEngine)
-	: m_physEngine(physEngine)
-	, m_running(false)
+Player::Player()
+	: m_running(false)
 {}
 
-bool Player::init(Json const& json)
+bool Player::init(PhysicsEngine *physEngine, Json const& json)
 {
 	if (!SpriteBatchNode::initWithFile("gfx/player_atlas.png"))
 		return false;
@@ -81,20 +80,20 @@ bool Player::init(Json const& json)
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.fixedRotation = true;
-	bodyDef.position.Set(origin.x / m_physEngine->getPtmRatio(),
-		origin.y / m_physEngine->getPtmRatio());
-	if (!m_physEngine->createBody(bodyDef))
+	bodyDef.position.Set(origin.x / physEngine->getPtmRatio(),
+		origin.y / physEngine->getPtmRatio());
+	if (!physEngine->createBody(bodyDef))
 		CCASSERT(false, "Can't create body");
 
-	m_puppeteer = PlayerPuppeteer::create(m_sprite, bodyDef, m_physEngine);
+	m_puppeteer = PlayerPuppeteer::create(m_sprite, bodyDef, physEngine);
 	if (!m_puppeteer)
 		return false;
 
 	const Size playerSize(45, 51);
 
 	b2PolygonShape shape;
-	shape.SetAsBox(playerSize.width / 2 / m_physEngine->getPtmRatio(),
-		playerSize.height / 2 / m_physEngine->getPtmRatio());
+	shape.SetAsBox(playerSize.width / 2 / physEngine->getPtmRatio(),
+		playerSize.height / 2 / physEngine->getPtmRatio());
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
@@ -105,9 +104,9 @@ bool Player::init(Json const& json)
 	if (!m_puppeteer->getBody()->CreateFixture(&fixtureDef))
 		CCASSERT(false, "Can't create fixture");
 
-	shape.SetAsBox(playerSize.width / 4 / m_physEngine->getPtmRatio(),
-		2.5f / m_physEngine->getPtmRatio(),
-		b2Vec2(0, -playerSize.height / 2 / m_physEngine->getPtmRatio()),
+	shape.SetAsBox(playerSize.width / 4 / physEngine->getPtmRatio(),
+		2.5f / physEngine->getPtmRatio(),
+		b2Vec2(0, -playerSize.height / 2 / physEngine->getPtmRatio()),
 		0.0f);
 
 	b2FixtureDef footSensor;
