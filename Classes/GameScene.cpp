@@ -160,5 +160,8 @@ bool GameScene::PlayerIsInsideMap() const
 {
 	auto pos = m_player->GetSpritePosition();
 	auto size = m_gameWorld->getContentSize();
-	return (pos.x > 0 && pos.y > 0 && pos.x < size.width && pos.y < size.height);
+	const float OUT_DEPTH = 100;
+
+	return (pos.x > -OUT_DEPTH && pos.y > -OUT_DEPTH &&
+		pos.x < size.width + OUT_DEPTH && pos.y < size.height + OUT_DEPTH);
 }
