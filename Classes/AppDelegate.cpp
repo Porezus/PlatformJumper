@@ -42,7 +42,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	director->setAnimationInterval(1.0 / 60);
 
 	// Set the design resolution
-	cocos2d::Size windowSize(640, 480);
+	cocos2d::Size windowSize(800, 480);
 	glview->setDesignResolutionSize(windowSize.width, windowSize.height, ResolutionPolicy::NO_BORDER);
 	glview->setFrameSize(windowSize.width, windowSize.height);
 
