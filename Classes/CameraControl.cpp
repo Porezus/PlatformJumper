@@ -42,12 +42,12 @@ void CameraControl::Update(Vec2 const& playerPosition, bool playerFacingLeft, fl
 		m_currentPosition.x = fmaxf(m_targetPositionX, m_currentPosition.x - (CAM_MOVE_SPEED * dt));
 	}
 
-	const float UPPER_DEAD_ZONE_HEIGHT = 0.1f * m_cameraSize.height;
+	const float UPPER_DEAD_ZONE_HEIGHT = 0.3f * m_cameraSize.height;
 	if (m_cameraSize.height - GetPositionInCamera(playerPosition).y < UPPER_DEAD_ZONE_HEIGHT)
 	{
 		m_currentPosition.y -= (UPPER_DEAD_ZONE_HEIGHT - (m_cameraSize.height - GetPositionInCamera(playerPosition).y));
 	}
-	const float LOWER_DEAD_ZONE_HEIGHT = 0.3f * m_cameraSize.height;
+	const float LOWER_DEAD_ZONE_HEIGHT = 0.4f * m_cameraSize.height;
 	if (GetPositionInCamera(playerPosition).y < LOWER_DEAD_ZONE_HEIGHT)
 	{
 		m_currentPosition.y += (LOWER_DEAD_ZONE_HEIGHT - GetPositionInCamera(playerPosition).y);
