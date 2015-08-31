@@ -55,5 +55,7 @@
 			"y": 300
 		},
 		"facing": "right"
-	}
+	},
+
+	"nextMap": "maps\\debug"
 }
