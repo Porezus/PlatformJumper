@@ -57,7 +57,7 @@ bool GameScene::init(std::string const& mapName)
 	if (!m_physEngine)
 		return false;
 
-	auto dataJson = JsonUtils::LoadFromFile(mapName + ".dat");
+	auto dataJson = JsonUtils::LoadFromFile(mapName + ".json");
 	m_bonusesLeft = dataJson["bonus"].array_items().size();
 	m_nextMap = dataJson["nextMap"].string_value();
 
