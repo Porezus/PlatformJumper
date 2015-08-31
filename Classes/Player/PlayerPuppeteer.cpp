@@ -18,7 +18,7 @@ PlayerPuppeteer* PlayerPuppeteer::create(Node *node, const b2BodyDef &bodyDef, P
 
 PlayerPuppeteer::PlayerPuppeteer(Node *node)
 	: NodePhysicsPuppeteer(node)
-	, m_onGround(true)
+	, m_onGround(false)
 {}
 
 void PlayerPuppeteer::didBeginContact(const PhysicsContactInfo &info)
