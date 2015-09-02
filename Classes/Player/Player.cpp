@@ -154,11 +154,12 @@ void Player::Stop()
 
 void Player::Jump()
 {
-	if (!m_puppeteer->NearGround())
+	if (!m_puppeteer->CanJump())
 		return;
 
 	auto body = m_puppeteer->getBody();
-	body->ApplyLinearImpulse(b2Vec2(0, 0.06f), body->GetPosition(), false);
+	body->ApplyLinearImpulse(b2Vec2(0, 0.12f), body->GetPosition(), false);
+	m_puppeteer->ResetJumpTimeout();
 }
 
 void Player::SetFacing(bool facingLeft)
