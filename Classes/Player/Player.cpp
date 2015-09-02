@@ -154,7 +154,7 @@ void Player::Stop()
 
 void Player::Jump()
 {
-	if (!m_puppeteer->OnGround())
+	if (!m_puppeteer->NearGround())
 		return;
 
 	auto body = m_puppeteer->getBody();

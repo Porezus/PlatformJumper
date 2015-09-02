@@ -18,22 +18,22 @@ PlayerPuppeteer* PlayerPuppeteer::create(Node *node, const b2BodyDef &bodyDef, P
 
 PlayerPuppeteer::PlayerPuppeteer(Node *node)
 	: NodePhysicsPuppeteer(node)
-	, m_onGround(false)
+	, m_nearGround(false)
 {}
 
 void PlayerPuppeteer::didBeginContact(const PhysicsContactInfo &info)
 {
 	if (info.myFixture->GetUserData() == (void*)1)
-		m_onGround = true;
+		m_nearGround = true;
 }
 
 void PlayerPuppeteer::didEndContact(const PhysicsContactInfo &info)
 {
 	if (info.myFixture->GetUserData() == (void*)1)
-		m_onGround = false;
+		m_nearGround = false;
 }
 
-bool PlayerPuppeteer::OnGround() const
+bool PlayerPuppeteer::NearGround() const
 {
-	return m_onGround;
+	return m_nearGround;
 }

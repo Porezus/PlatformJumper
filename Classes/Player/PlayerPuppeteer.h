@@ -11,8 +11,8 @@ public:
 	void didBeginContact(const PhysicsContactInfo &info) override;
 	void didEndContact(const PhysicsContactInfo &info) override;
 
-	bool OnGround() const;
+	bool NearGround() const;
 
 private:
-	bool m_onGround;
+	bool m_nearGround;
 };
